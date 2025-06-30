@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokomo Art Association - A Hub for Creativity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1600x900/a3b18a/344e41');
+            background-size: cover;
+            background-position: center;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal-container {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 90%;
+            width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.visible .modal-container {
+            transform: scale(1);
+        }
+        /* Calendar Styles */
+        .calendar-day {
+            transition: background-color 0.2s;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .calendar-day.has-event {
+            cursor: pointer;
+            position: relative;
+        }
+        .calendar-day.has-event:hover {
+            background-color: #f0f9ff;
+        }
+        .event-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ef4444;
+            margin-top: 4px;
+        }
+        .other-month {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div>
+                <a href="#">
+                    <img src="https://i.imgur.com/LNDKl9o.jpeg" alt="Kokomo Art Association Logo" class="h-12 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50/000000/FFFFFF?text=KAA+Logo';">
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#events" class="text-gray-600 hover:text-teal-600 font-semibold">Events</a>
+                <a href="#classes" class="text-gray-600 hover:text-teal-600 font-semibold">Classes</a>
+                <a href="#artists" class="text-gray-600 hover:text-teal-600 font-semibold">Artists</a>
+                <a href="#locations" class="text-gray-600 hover:text-teal-600 font-semibold">Locations</a>
+                <a href="#membership" class="text-gray-600 hover:text-teal-600 font-semibold">Membership</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <i class="fas fa-bars text-gray-600 text-2xl"></i>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t">
+             <a href="#events" class="block py-2 text-gray-600 hover:text-teal-600">Events</a>
+             <a href="#classes" class="block py-2 text-gray-600 hover:text-teal-600">Classes</a>
+             <a href="#artists" class="block py-2 text-gray-600 hover:text-teal-600">Artists</a>
+             <a href="#locations" class="block py-2 text-gray-600 hover:text-teal-600">Locations</a>
+             <a href="#membership" class="block py-2 text-gray-600 hover:text-teal-600">Membership</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-bg text-white">
+            <div class="container mx-auto px-6 py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Your Home for the Arts Since 1926</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Organized to interest the community in the Arts, the KAA provides classes, galleries, and a vibrant hub for artists and art lovers alike.</p>
+                <a href="#membership" class="bg-white text-teal-700 font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition duration-300">Join Our Community</a>
+            </div>
+        </section>
+
+        <div id="sections-container">
+            <section id="events" class="py-20 scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Events Calendar</h2>
+                    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <button id="prev-month-btn" class="p-2 rounded-full hover:bg-gray-100 transition"><i class="fas fa-chevron-left"></i></button>
+                            <h3 id="month-year" class="text-xl font-bold text-center"></h3>
+                            <button id="next-month-btn" class="p-2 rounded-full hover:bg-gray-100 transition"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="grid grid-cols-7 gap-1 text-center font-semibold text-gray-600 mb-2">
+                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                        </div>
+                        <div id="calendar-grid" class="grid grid-cols-7 gap-1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="classes" class="py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Find Your Creative Outlet</h2>
+                    <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">We offer a wide variety of classes for all skill levels. Explore a new medium or sharpen your skills with our talented instructors.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Watercolor Techniques</h4><p class="text-gray-600">with Dixie Ben-net</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pastels</h4><p class="text-gray-600">with Avon Waters</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Photography</h4><p class="text-gray-600">with Bob Dawson</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Drawing</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pottery</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Zentangle</h4><p class="text-gray-600">with Don Wilka</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Sip & Paint Parties</h4><p class="text-gray-600">with Ramona Daniels</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Painting</h4><p class="text-gray-600">with Ramona Daniels</p></div>
+                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Junk Journaling</h4><p class="text-gray-600">with Vivian Bennett</p></div>
+                    </div>
+                </div>
+            </section>
+            <section id="artists" class="py-20 scroll-animate">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold mb-4">Meet Our Artists</h2>
+                    <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">Our association is proud to be home to a diverse and talented group of local artists. Click on a name to see a sample of their work and learn their story.</p>
+                    <div id="artist-list" class="flex flex-wrap justify-center gap-x-4 gap-y-3 text-gray-700"></div>
+                </div>
+            </section>
+            <section id="locations" class="py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Visit Our Locations</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                        <div class="text-center">
+                            <img src="https://placehold.co/800x600/3d405b/f4f1de?text=Artworks+Gallery" class="rounded-lg shadow-xl mb-6" alt="Artworks Gallery">
+                            <h3 class="text-2xl font-bold mb-2">Artworks Gallery</h3>
+                            <p class="mb-4 text-gray-600">Our retail co-op gallery in downtown Kokomo features member art, receptions, and studio spaces for rent.</p>
+                            <p class="font-semibold"><i class="fas fa-map-marker-alt mr-2 text-teal-600"></i>210 N. Main Street, Kokomo, IN</p>
+                            <p class="text-gray-600 mt-2"><i class="far fa-clock mr-2 text-teal-600"></i>Mon-Fri: 12 PM - 4 PM | Sat: 11 AM - 3 PM</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://placehold.co/800x600/f2cc8f/3d405b?text=Kokomo+Art+Center" class="rounded-lg shadow-xl mb-6" alt="Kokomo Art Center">
+                            <h3 class="text-2xl font-bold mb-2">Kokomo Art Center</h3>
+                            <p class="mb-4 text-gray-600">Located in beautiful Highland Park, the Art Center houses our Permanent Collection and hosts classes, competitions, and camps. Be sure to visit the new **Little Free Art Library** out front!</p>
+                            <p class="font-semibold"><i class="fas fa-map-marker-alt mr-2 text-teal-600"></i>525 W. Ricketts Street, Kokomo, IN</p>
+                            <p class="text-gray-600 mt-2"><i class="far fa-clock mr-2 text-teal-600"></i>Tue-Sat: 1 PM - 4 PM (Mar-Nov)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="membership" class="py-20 scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-2">Membership Benefits</h2>
+                     <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">To join the KAA, please select a membership level below or mail a check payable to: Kokomo Art Association, 210 N. Main St. Kokomo, IN 46901.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                        <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition">
+                            <h3 class="text-2xl font-bold text-center">Student</h3><p class="text-4xl font-bold my-4 text-center">$15<span class="text-base font-normal">/year</span></p>
+                            <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Display and sell on First Fridays (no commission fee)</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Display and sell in Nov & Dec holidays (10% commission)</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Artist listing on kaaonline.org</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on entry fees for Annual Photography & Spring Art Shows</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on workshop registration fees</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on Gallery facility rentals</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Receive the KAA monthly Newsletter</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Student</button>
+                        </div>
+                        <div class="border-2 border-teal-500 rounded-lg p-6 bg-white shadow-lg flex flex-col h-full relative card-hover transition">
+                            <span class="bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">Most Popular</span>
+                            <h3 class="text-2xl font-bold text-center">Individual</h3><p class="text-4xl font-bold my-4 text-center">$29<span class="text-base font-normal">/year</span></p>
+                            <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Display and sell on First Fridays (no commission fee)</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Display and sell in Nov & Dec holidays (10% commission)</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Artist listing on kaaonline.org</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on entry fees for Annual Photography & Spring Art Shows</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on workshop registration fees</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Discount on Gallery facility rentals</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Receive the KAA monthly Newsletter</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-500 text-white w-full py-2 rounded-md hover:bg-teal-600 transition text-center">Join as Individual</button>
+                        </div>
+                        <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition">
+                            <h3 class="text-2xl font-bold text-center">Business</h3><p class="text-4xl font-bold my-4 text-center">$99<span class="text-base font-normal">/year</span></p>
+                            <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Listing on kaaonline.org</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>10% discount on 2/hour gallery rentals</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Advertise/sell on First Fridays</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Receive the KAA monthly Newsletter</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Business</button>
+                        </div>
+                        <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition">
+                            <h3 class="text-2xl font-bold text-center">Friends of Art</h3><p class="text-4xl font-bold my-4 text-center">$250<span class="text-base font-normal">/year</span></p>
+                             <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Sponsor listing on kaaonline.org for 1 year</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>20% discount on 2/hour gallery rentals</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Advertise/sell on First Fridays</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Receive the KAA monthly Newsletter</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Friend</button>
+                        </div>
+                        <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition">
+                            <h3 class="text-2xl font-bold text-center">Corporate Sponsor</h3><p class="text-4xl font-bold my-4 text-center">$1,000<span class="text-base font-normal">/year</span></p>
+                             <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>One free 2-hour rental of Artworks for 1 year</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Sponsor listing on kaaonline.org for 1 year</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>30% discount on 2/hour gallery rentals</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Advertise on First Fridays</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Sponsor</button>
+                        </div>
+                        <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition">
+                            <h3 class="text-2xl font-bold text-center">Golden Palette</h3><p class="text-4xl font-bold my-4 text-center">$1,500<span class="text-base font-normal">/year</span></p>
+                            <ul class="text-gray-600 space-y-2 mb-6 text-left flex-grow text-sm"><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>One free 2-hour rental of Artworks for 1 year</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Sponsor listing on kaaonline.org for 1 year</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>One free 4-hour gallery rental</span></li><li class="flex items-start"><i class="fas fa-check text-teal-500 mr-2 mt-1 flex-shrink-0"></i><span>Advertise on First Fridays</span></li></ul>
+                            <button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Golden Palette</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="about" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h4 class="font-bold text-lg mb-4">About KAA</h4>
+                    <p class="text-gray-400">The Kokomo Art Association was organized in 1926. Bylaws and a constitution were established in 1962, and not-for-profit status was attained in 1981. We are dedicated to promoting the arts and supporting local artists in our community.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul>
+                         <li class="mb-2"><a href="#events" class="hover:text-teal-400">Events</a></li>
+                         <li class="mb-2"><a href="#classes" class="hover:text-teal-400">Classes</a></li>
+                         <li class="mb-2"><a href="#artists" class="hover:text-teal-400">Artists</a></li>
+                         <li class="mb-2"><a href="#membership" class="hover:text-teal-400">Membership</a></li>
+                         <li class="mb-2"><a href="#" class="hover:text-teal-400">Donate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Join Our Newsletter</h4>
+                    <form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">&rarr;</button></div></form>
+                    <div class="flex space-x-4 mt-4"><a href="#" aria-label="Facebook" class="text-2xl hover:text-teal-400"><i class="fab fa-facebook-square"></i></a><a href="#" aria-label="Instagram" class="text-2xl hover:text-teal-400"><i class="fab fa-instagram-square"></i></a></div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="modal-placeholder"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const artistData = {
+            'Marilyn Aleman': { img: 'https://placehold.co/400x400/8d5b3c/f5efe6?text=Pottery', bio: `I was born in Marion, Indiana. I have studied art at Northern Illinois University, University of Illinois at Chicago, The School of the Art Institute, and Ball State University. I have invested forty years of my life in the art field. As an individual, educator and artist my focus has always been learning to see and appreciate life more fully, and demonstrate that through my art work. At the present time that's in clay. Pottery has become the love of my life. In my artwork I hope to inspire my audience.
