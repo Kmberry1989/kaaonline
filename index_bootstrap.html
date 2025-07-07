@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kokomo Art Association - Bootstrap Version</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { font-family: system-ui, sans-serif; }
+        .hero {
+            background: url('kaacolor.png') center/cover no-repeat;
+            color: #fff;
+            padding: 6rem 0;
+        }
+        .hero h1 {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+        footer { background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="918D5B2F-EEA0-4A9E-AC15-88359C704F97.png" alt="Logo" width="40" height="40"> KAA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero text-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Your Home for the Arts Since 1926</h1>
+    <p class="lead">Organized to interest the community in the Arts, the KAA provides classes, galleries, and a vibrant hub for artists and art lovers alike.</p>
+    <a href="#" class="btn btn-primary btn-lg">Join Our Community</a>
+  </div>
+</header>
+
+<main>
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">About the Kokomo Art Association</h2>
+      <p class="lead">The Kokomo Art Association was organized in 1926 to interest the community in the Arts. Meetings were first held in members' homes and at the Hotel Frances in downtown Kokomo.</p>
+    </div>
+  </section>
+
+  <section id="events" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Events</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Junk Journal Workshop</h5>
+              <p class="card-text">Create a handmade journal from recycled materials with talented artist Vivian Bennett.</p>
+              <p class="text-muted">March 15, 12&ndash;4 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">Reception for Brandon C. Bass</h5>
+              <p class="card-text">Join us to celebrate our July guest artist.</p>
+              <p class="text-muted">July 13, 12&ndash;3 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">First Friday</h5>
+              <p class="card-text">Monthly First Friday event at Artworks Gallery.</p>
+              <p class="text-muted">5&ndash;9 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="classes" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Find Your Creative Outlet</h2>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Watercolor Techniques</div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Pastels</div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Photography</div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Drawing</div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Pottery</div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+          <div class="p-3 border bg-light">Zentangle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Contact Us</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Jane Doe">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="py-4 mt-auto">
+  <div class="container text-center">
+    <p class="mb-0">&copy; <span id="year"></span> Kokomo Art Association</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

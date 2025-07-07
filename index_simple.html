@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kokomo Art Association - Simple Version</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;line-height:1.5;background:#202020;color:#f5f5f5;}
+    header,section,footer{padding:2rem 1rem}
+    header{background:#333;position:sticky;top:0;z-index:1000}
+    nav ul{display:flex;flex-wrap:wrap;list-style:none;gap:1rem;justify-content:center}
+    nav a{color:#f5f5f5;text-decoration:none;font-weight:bold}
+    nav a:hover{color:#ffd700}
+    .hero{background:url('kaacolor.png') center/cover no-repeat;padding:6rem 1rem;text-align:center;color:#fff}
+    .container{max-width:1000px;margin:0 auto}
+    h1,h2{text-align:center;margin-bottom:1rem}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+    footer{background:#333;text-align:center}
+  </style>
+</head>
+<body>
+<header>
+  <nav class="container">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#classes">Classes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Your Home for the Arts Since 1926</h1>
+    <p>Organized to interest the community in the Arts.</p>
+  </div>
+</section>
+
+<section id="about" class="container">
+  <h2>About the Kokomo Art Association</h2>
+  <p>The Kokomo Art Association was organized in 1926 to interest the community in the Arts.</p>
+</section>
+
+<section id="events" class="container">
+  <h2>Upcoming Events</h2>
+  <div class="grid">
+    <div><strong>Junk Journal Workshop</strong><br>March 15</div>
+    <div><strong>Brandon C. Bass Reception</strong><br>July 13</div>
+    <div><strong>First Friday</strong><br>Monthly</div>
+  </div>
+</section>
+
+<section id="classes" class="container">
+  <h2>Classes</h2>
+  <div class="grid">
+    <div>Watercolor Techniques</div>
+    <div>Pastels</div>
+    <div>Photography</div>
+    <div>Drawing</div>
+    <div>Pottery</div>
+    <div>Zentangle</div>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact</h2>
+  <form>
+    <p><label>Name<br><input type="text" style="width:100%"></label></p>
+    <p><label>Email<br><input type="email" style="width:100%"></label></p>
+    <p><label>Message<br><textarea rows="4" style="width:100%"></textarea></label></p>
+    <p><button type="submit">Send</button></p>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> Kokomo Art Association</p>
+</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
