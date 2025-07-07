@@ -30,6 +30,9 @@
         .sign-open { background-color: #16a34a; border-color: #0d6b2d; }
         .sign-closed { background-color: #dc2626; border-color: #991b1b; }
         .sign-holiday { background-color: #f59e0b; border-color: #b45309; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-input { display: block; width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+        .agreement-box { height: 10rem; overflow-y: auto; padding: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background-color: #f9fafb; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -47,9 +50,13 @@
             </div>
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-gray-600 hover:text-teal-600 font-semibold">About</a>
+                <a href="#store" class="text-gray-600 hover:text-teal-600 font-semibold">Art for Sale</a>
+                <a href="#artist-alley" class="text-gray-600 hover:text-teal-600 font-semibold">Artist Alley</a>
                 <a href="#events" class="text-gray-600 hover:text-teal-600 font-semibold">Events</a>
+                <a href="#classes" class="text-gray-600 hover:text-teal-600 font-semibold">Classes</a>
                 <a href="#artists" class="text-gray-600 hover:text-teal-600 font-semibold">Artists</a>
                 <a href="#locations" class="text-gray-600 hover:text-teal-600 font-semibold">Locations</a>
+                <a href="#volunteer" class="text-gray-600 hover:text-teal-600 font-semibold">Volunteer</a>
                 <a href="#membership" class="text-gray-600 hover:text-teal-600 font-semibold">Membership</a>
                 <a href="#donate" class="text-gray-600 hover:text-teal-600 font-semibold">Donate</a>
             </div>
@@ -59,9 +66,13 @@
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t">
              <a href="#about" class="block py-2 text-gray-600 hover:text-teal-600">About</a>
+             <a href="#store" class="block py-2 text-gray-600 hover:text-teal-600">Art for Sale</a>
+             <a href="#artist-alley" class="block py-2 text-gray-600 hover:text-teal-600">Artist Alley</a>
              <a href="#events" class="block py-2 text-gray-600 hover:text-teal-600">Events</a>
+             <a href="#classes" class="block py-2 text-gray-600 hover:text-teal-600">Classes</a>
              <a href="#artists" class="block py-2 text-gray-600 hover:text-teal-600">Artists</a>
              <a href="#locations" class="block py-2 text-gray-600 hover:text-teal-600">Locations</a>
+             <a href="#volunteer" class="block py-2 text-gray-600 hover:text-teal-600">Volunteer</a>
              <a href="#membership" class="block py-2 text-gray-600 hover:text-teal-600">Membership</a>
              <a href="#donate" class="block py-2 text-gray-600 hover:text-teal-600">Donate</a>
         </div>
@@ -88,6 +99,134 @@
                     </p>
                 </div>
             </section>
+            
+            <section id="store" class="py-12 md:py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Art for Sale</h2>
+                    <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">This is a gallery of what's available in our stores. All items are available for purchase in person.</p>
+                    <div id="art-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        </div>
+                </div>
+            </section>
+
+            <section id="artist-alley" class="py-12 md:py-20 scroll-animate">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-4">Artist Alley Project - 12th Annual Call for Entries</h2>
+                    <div class="max-w-4xl mx-auto text-gray-600 leading-relaxed">
+                        <p class="mb-4">In 2012, the Kokomo Art Association and the Greater Kokomo Downtown Association launched a collaborative effort to revitalize a forgotten alley in downtown Kokomo. With support from local businesses and organizations, this once-dark passage was transformed into Artist Alley—an outdoor public art gallery that officially opened on October 3, 2014.</p>
+                        <p class="mb-4">Artist Alley has since become a vibrant destination, offering a dynamic visual experience for residents and visitors alike. The space has expanded opportunities for regional artists, increased public engagement with visual art, sparked community dialogue, and contributed to Kokomo’s cultural tourism.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-8 mb-4">Project Scope & Openings</h3>
+                        <p class="mb-4">The Artist Alley Steering Committee invites artists to submit proposals for public art installations for a 12-month exhibition beginning September 5, 2025. There is no set theme.</p>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li><b>Murals:</b> Fifteen (15) 8'x8' wall-mounted panels available (1/4” marine board provided). Smaller dimensions are welcome.</li>
+                            <li><b>Sculptures:</b> Two (2) ground-level sites available. Must be mountable on a base not exceeding 4'x4' and 1' high. Max height: 8 feet. Max weight: 200 pounds.</li>
+                        </ul>
+                         <p class="mb-4"><b>Sales:</b> All artwork is for sale, with a 30% commission retained.</p>
+                        <p class="mb-8"><b>Submission Deadline:</b> Proposals, applications, and a detailed drawing must be received by 5:00 PM on June 2, 2025. Installation is August 30, 2025.</p>
+
+                        <form action="https://formspree.io/f/kokomoartassociation2014@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6 bg-white p-8 rounded-lg shadow-lg">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="artist-name" class="form-label">Artist Name</label>
+                                    <input type="text" id="artist-name" name="artist-name" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="artist-phone" class="form-label">Phone</label>
+                                    <input type="tel" id="artist-phone" name="artist-phone" class="form-input" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="artist-address" class="form-label">Address</label>
+                                <input type="text" id="artist-address" name="artist-address" class="form-input" required>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label for="artist-city" class="form-label">City</label>
+                                    <input type="text" id="artist-city" name="artist-city" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="artist-state" class="form-label">State</label>
+                                    <input type="text" id="artist-state" name="artist-state" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="artist-zip" class="form-label">Zip Code</label>
+                                    <input type="text" id="artist-zip" name="artist-zip" class="form-input" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="artist-email" class="form-label">Email</label>
+                                <input type="email" id="artist-email" name="artist-email" class="form-input" required>
+                            </div>
+                            <hr class="my-6">
+                            <div>
+                                <label for="artwork-title" class="form-label">Artwork Title</label>
+                                <input type="text" id="artwork-title" name="artwork-title" class="form-input" required>
+                            </div>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="artwork-media" class="form-label">Materials/Medium</label>
+                                    <input type="text" id="artwork-media" name="artwork-media" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="artwork-drawing" class="form-label">Detailed Drawing/Sketch</label>
+                                    <input type="file" id="artwork-drawing" name="artwork-drawing" class="form-input" required>
+                                </div>
+                            </div>
+                            <fieldset>
+                                <legend class="form-label">Board Size Requested (for Murals)</legend>
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="board-height" class="text-sm">Height (ft)</label>
+                                        <input type="number" id="board-height" name="board-height" class="form-input">
+                                    </div>
+                                    <div>
+                                        <label for="board-width" class="text-sm">Width (ft)</label>
+                                        <input type="number" id="board-width" name="board-width" class="form-input">
+                                    </div>
+                                </div>
+                            </fieldset>
+                             <fieldset>
+                                <legend class="form-label">Final Dimensions (H x W x D)</legend>
+                                <div class="grid grid-cols-3 gap-6">
+                                    <input type="number" name="final-height" placeholder="Height (ft)" class="form-input">
+                                    <input type="number" name="final-width" placeholder="Width (ft)" class="form-input">
+                                    <input type="number" name="final-depth" placeholder="Depth (in)" class="form-input">
+                                </div>
+                            </fieldset>
+                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div>
+                                    <label for="artwork-weight" class="form-label">Weight (lbs)</label>
+                                    <input type="number" id="artwork-weight" name="artwork-weight" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="artwork-valuation" class="form-label">Insurance Valuation ($)</label>
+                                    <input type="text" id="artwork-valuation" name="artwork-valuation" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="artwork-price" class="form-label">Sales Price ($)</label>
+                                    <input type="text" id="artwork-price" name="artwork-price" class="form-input">
+                                </div>
+                            </div>
+                            <fieldset>
+                                <legend class="form-label">Agreement</legend>
+                                <div class="agreement-box text-sm">
+                                    <p><strong>HOLD HARMLESS AND PUBLICITY AGREEMENT:</strong> The undersigned artist hereby releases and agrees to hold harmless the Artist Alley Committee, Kokomo Art Association, Greater Kokomo Economic Development Alliance, the City of Kokomo, Howard County, Indiana, and their respective officials, officers, employees, agents, and volunteers from any and all loss or damage to the undersigned’s property or any personal injury or death which the undersigned or the undersigned’s employees or agents may sustain during, on account of, or as a result of their artwork in the Artist Alley.</p>
+                                    <p class="mt-2">The undersigned further agrees to abide by all the rules, policies, and guidelines of the Kokomo Art Association and the Greater Kokomo Downtown Association and understands that failure to do so will result in the undersigned’s expulsion from the exhibition.</p>
+                                    <p class="mt-2">The undersigned consents to the Kokomo Art Association's and the Greater Kokomo Downtown Association’s use of reproductions of images and biographical information in Artist Alley promotional materials.</p>
+                                </div>
+                                <div class="mt-4">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="agreement" class="h-4 w-4 text-teal-600 border-gray-300 rounded" required>
+                                        <span class="ml-2 text-gray-700">I have read and agree to the terms.</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-full hover:bg-teal-700 transition duration-300">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
             <section id="events" class="py-12 md:py-20 bg-white scroll-animate">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12">Events Calendar</h2>
@@ -104,23 +243,15 @@
                     </div>
                 </div>
             </section>
+            
             <section id="classes" class="py-12 md:py-20 scroll-animate">
                 <div class="container mx-auto px-6">
-                    <h2 class="text-3xl font-bold text-center mb-12">Find Your Creative Outlet</h2>
-                    <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">We offer a wide variety of classes for all skill levels. Explore a new medium or sharpen your skills with our talented instructors.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Watercolor Techniques</h4><p class="text-gray-600">with Dixie Ben-net</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pastels</h4><p class="text-gray-600">with Avon Waters</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Photography</h4><p class="text-gray-600">with Bob Dawson</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Drawing</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pottery</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Zentangle</h4><p class="text-gray-600">with Don Wilka</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Sip & Paint Parties</h4><p class="text-gray-600">with Ramona Daniels</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Painting</h4><p class="text-gray-600">with Ramona Daniels</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Junk Journaling</h4><p class="text-gray-600">with Vivian Bennett</p></div>
-                    </div>
+                    <h2 class="text-3xl font-bold text-center mb-12">Classes & Workshops</h2>
+                    <div id="class-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        </div>
                 </div>
             </section>
+
             <section id="artists" class="py-12 md:py-20 bg-white scroll-animate">
                 <div class="container mx-auto px-6 text-center">
                     <h2 class="text-3xl font-bold mb-4">Meet Our Artists</h2>
@@ -142,7 +273,7 @@
                                     <p class="mb-6 text-gray-600">Our retail co-op gallery in downtown Kokomo features member art, receptions, and studio spaces for rent.</p>
                                     <div class="mb-6 bg-white p-4 rounded-md border">
                                         <h4 class="font-bold text-lg mb-2">Contact Information</h4>
-                                        <div class="flex items-center text-gray-700"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>210 N. Main Street, Kokomo, IN</span></div>
+                                        <a href="#" id="artworks-address" class="flex items-center text-gray-700 hover:text-teal-600"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>210 N. Main Street, Kokomo, IN</span></a>
                                         <div class="flex items-center text-gray-700 mt-2"><i class="fas fa-phone w-6 text-center mr-2 text-teal-600"></i><span>(765) 459-4579</span></div>
                                     </div>
                                     <div class="bg-white p-4 rounded-md border">
@@ -173,7 +304,7 @@
                                     <p class="mb-6 text-gray-600">Located in beautiful Highland Park, the Art Center houses our Permanent Collection and hosts classes, competitions, and camps.</p>
                                     <div class="mb-6 bg-white p-4 rounded-md border">
                                         <h4 class="font-bold text-lg mb-2">Contact Information</h4>
-                                        <div class="flex items-center text-gray-700"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>525 W. Ricketts Street, Kokomo, IN</span></div>
+                                        <a href="#" id="artcenter-address" class="flex items-center text-gray-700 hover:text-teal-600"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>525 W. Ricketts Street, Kokomo, IN</span></a>
                                         <div class="flex items-center text-gray-700 mt-2"><i class="fas fa-phone w-6 text-center mr-2 text-teal-600"></i><span>(765) 459-4579</span></div>
                                     </div>
                                     <div class="bg-white p-4 rounded-md border">
@@ -197,7 +328,20 @@
                     </div>
                 </div>
             </section>
-            <section id="membership" class="py-12 md:py-20 bg-white scroll-animate">
+            
+            <section id="volunteer" class="py-12 md:py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Volunteer With Us</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed mb-8">
+                        We are always looking for passionate individuals to help us with various tasks and events. Whether you can spare a few hours a month or want to be a regular contributor, we have a place for you.
+                    </p>
+                    <a href="https://github.com/Kmberry1989/kaaonline/blob/main/Volunteer%20application.pdf" target="_blank" class="inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-700 transition duration-300">
+                        Download Application
+                    </a>
+                </div>
+            </section>
+
+            <section id="membership" class="py-12 md:py-20 scroll-animate">
                  <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-2">Membership Benefits</h2>
                      <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">To join the KAA, please select a membership level below or mail a check payable to: Kokomo Art Association, 210 N. Main St. Kokomo, IN 46901.</p>
@@ -232,10 +376,9 @@
 
     <footer id="footer" class="bg-white text-gray-800 border-t">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="md:col-span-2"><h4 class="font-bold text-lg mb-4 text-gray-900">About KAA</h4><p class="text-gray-600">The Kokomo Art Association was organized in 1926. Bylaws and a constitution were established in 1962, and not-for-profit status was attained in 1981. We are dedicated to promoting the arts and supporting local artists in our community.</p></div>
-                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Quick Links</h4><ul><li class="mb-2"><a href="#events" class="text-gray-600 hover:text-teal-600">Events</a></li><li class="mb-2"><a href="#classes" class="text-gray-600 hover:text-teal-600">Classes</a></li><li class="mb-2"><a href="#artists" class="text-gray-600 hover:text-teal-600">Artists</a></li><li class="mb-2"><a href="#membership" class="text-gray-600 hover:text-teal-600">Membership</a></li><li class="mb-2"><a href="#donate" class="text-gray-600 hover:text-teal-600">Donate</a></li></ul></div>
-                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Join Our Newsletter</h4><form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 border border-gray-300 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">&rarr;</button></div></form><div class="flex space-x-4 mt-4"><a href="https://www.facebook.com/KokomoArtAssociation/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-facebook-square"></i></a><a href="https://www.instagram.com/kokomoartassociation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-instagram-square"></i></a></div></div>
+                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Join Our Newsletter</h4><form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 border border-gray-300 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">→</button></div></form><div class="flex space-x-4 mt-4"><a href="https://www.facebook.com/KokomoArtAssociation/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-facebook-square"></i></a><a href="https://www.instagram.com/kokomoartassociation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-instagram-square"></i></a></div></div>
             </div>
             <div class="border-t border-gray-200 mt-12 pt-8">
                 <h4 class="font-bold text-lg mb-6 text-center text-gray-700">Our Valued Sponsors</h4>
@@ -249,7 +392,7 @@
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/blick.png" alt="Blick Art Materials Logo" class="h-10 w-auto">
                 </div>
             </div>
-            <div class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600"><p>&copy; <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p></div>
+            <div class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600"><p>© <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p></div>
         </div>
     </footer>
     
@@ -285,8 +428,92 @@
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
+        const artworks = [
+            {
+                img: 'https://placehold.co/600x400/3b82f6/ffffff?text=Artwork+1',
+                title: 'Serenity in Blue',
+                artist: 'Jane Doe',
+                price: '$350'
+            },
+            {
+                img: 'https://placehold.co/600x400/16a34a/ffffff?text=Artwork+2',
+                title: 'Forest Whispers',
+                artist: 'John Smith',
+                price: '$500'
+            },
+            {
+                img: 'https://placehold.co/600x400/ef4444/ffffff?text=Artwork+3',
+                title: 'Autumn Blaze',
+                artist: 'Emily White',
+                price: '$425'
+            }
+        ];
+
+        const classes = [
+            {
+                title: 'Watercolor Techniques',
+                instructor: 'Dixie Ben-net',
+                description: 'Learn the fundamentals of watercolor painting.',
+                price: '$100'
+            },
+            {
+                title: 'Pastels',
+                instructor: 'Avon Waters',
+                description: 'Explore the vibrant world of pastels.',
+                price: '$120'
+            },
+            {
+                title: 'Photography',
+                instructor: 'Bob Dawson',
+                description: 'Master the art of capturing stunning photos.',
+                price: '$150'
+            }
+        ];
+
+        const artGallery = document.getElementById('art-gallery');
+        artworks.forEach(artwork => {
+            const artElement = document.createElement('div');
+            artElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+            artElement.innerHTML = `
+                <img src="${artwork.img}" alt="${artwork.title}" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold">${artwork.title}</h3>
+                    <p class="text-gray-700">by ${artwork.artist}</p>
+                    <p class="text-lg font-semibold mt-4">${artwork.price}</p>
+                </div>
+            `;
+            artGallery.appendChild(artElement);
+        });
+
+        const classList = document.getElementById('class-list');
+        classes.forEach(cls => {
+            const classElement = document.createElement('div');
+            classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+            classElement.innerHTML = `
+                <div class="p-6">
+                    <h3 class="text-xl font-bold">${cls.title}</h3>
+                    <p class="text-gray-700">with ${cls.instructor}</p>
+                    <p class="mt-2">${cls.description}</p>
+                    <p class="text-lg font-semibold mt-4">${cls.price}</p>
+                    <button class="register-btn mt-4 bg-teal-600 text-white font-bold py-2 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register</button>
+                </div>
+            `;
+            classList.appendChild(classElement);
+        });
+
+        document.querySelectorAll('.register-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const className = e.target.getAttribute('data-class');
+                createFormModal(`Register for ${className}`, [
+                    { label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' },
+                    { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' },
+                    { label: 'Phone Number', type: 'tel', id: 'phone', name: 'phone', placeholder: '123-456-7890' }
+                ], 'Submit Registration', className);
+            });
+        });
+
         const createModal = (content) => {
-            modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">&times;</button>${content}</div></div></div>`;
+            modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">×</button>${content}</div></div></div>`;
             setTimeout(() => {
                 const overlay = document.getElementById('modal-overlay');
                 if (overlay) overlay.classList.add('visible');
@@ -305,11 +532,48 @@
             }
         };
 
-        const createFormModal = (title, fields, submitText) => {
-            let fieldsHtml = fields.map(f => `<div class="mb-4"><label for="${f.id}" class="block text-sm font-medium text-gray-700 mb-1">${f.label}</label><${f.type === 'textarea' ? 'textarea rows="4"' : `input type="${f.type}"`} id="${f.id}" name="${f.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" placeholder="${f.placeholder || ''}">${f.type === 'textarea' ? '' : ''}</${f.type === 'textarea' ? 'textarea' : 'input'}></div>`).join('');
-            createModal(`<h2 class="text-2xl font-bold text-center mb-6">${title}</h2><form onsubmit="return false;">${fieldsHtml}<button type="submit" class="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">${submitText}</button></form>`);
+        const createFormModal = (title, fields, submitText, className) => {
+            let fieldsHtml = fields.map(f => `<div class="mb-4"><label for="${f.id}" class="block text-sm font-medium text-gray-700 mb-1">${f.label}</label><input type="${f.type}" id="${f.id}" name="${f.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" placeholder="${f.placeholder || ''}"></div>`).join('');
+            const formHtml = `
+                <h2 class="text-2xl font-bold text-center mb-6">${title}</h2>
+                <form id="registration-form" action="https://formspree.io/f/rochelleberry731@gmail.com" method="POST">
+                    <input type="hidden" name="class" value="${className}">
+                    ${fieldsHtml}
+                    <button type="submit" class="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">${submitText}</button>
+                </form>
+            `;
+            createModal(formHtml);
+
+            const form = document.getElementById('registration-form');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    closeModal();
+                    alert('Registration successful!');
+                } else {
+                    alert('There was a problem with your registration.');
+                }
+            });
         };
         
+        document.getElementById('artworks-address').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('https://www.google.com/maps/dir/?api=1&destination=210+N.+Main+Street,+Kokomo,+IN');
+        });
+
+        document.getElementById('artcenter-address').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('https://www.google.com/maps/dir/?api=1&destination=525+W.+Ricketts+Street,+Kokomo,+IN');
+        });
+
         const renderCalendar = () => {
             if(!calendarGridEl) return;
             const year = currentDate.getFullYear();
@@ -376,10 +640,10 @@
                 let linksHtml = '';
                 if(data.externalLinks && data.externalLinks.length > 0) {
                     linksHtml += '<div class="mt-4 pt-4 border-t border-gray-200"><h4 class="font-semibold text-gray-800 mb-2">Find them online:</h4><div class="flex flex-wrap gap-x-4 gap-y-2">';
-                    data.externalLinks.forEach(link => { linksHtml += `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold">${link.label} &rarr;</a>`; });
+                    data.externalLinks.forEach(link => { linksHtml += `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold">${link.label} →</a>`; });
                     linksHtml += '</div></div>';
                 }
-                const content = `<div class="flex flex-col md:flex-row gap-8 items-start"><div class="md:w-1/3 flex-shrink-0"><img src="${data.img}" alt="Sample of ${data.type} by ${artistName}" class="w-full h-auto rounded-lg shadow-md"></div><div class="md:w-2/3"><h2 class="text-3xl font-bold mb-2">${artistName}</h2><p class="font-semibold text-teal-600 mb-4">${data.type}</p><p class="text-gray-600">${data.bio}${data.kaaBioUrl ? `<a href="${data.kaaBioUrl}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold ml-1">Read Full Bio &rarr;</a>` : ''}</p>${linksHtml}</div></div>`;
+                const content = `<div class="flex flex-col md:flex-row gap-8 items-start"><div class="md:w-1/3 flex-shrink-0"><img src="${data.img}" alt="Sample of ${data.type} by ${artistName}" class="w-full h-auto rounded-lg shadow-md"></div><div class="md:w-2/3"><h2 class="text-3xl font-bold mb-2">${artistName}</h2><p class="font-semibold text-teal-600 mb-4">${data.type}</p><p class="text-gray-600">${data.bio}${data.kaaBioUrl ? `<a href="${data.kaaBioUrl}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold ml-1">Read Full Bio →</a>` : ''}</p>${linksHtml}</div></div>`;
                 createModal(content);
             }
             if (event.target.matches('.join-form-trigger')) createFormModal('KAA Membership Application', [{ label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' }], 'Submit Application');
@@ -389,7 +653,7 @@
 
         if(prevMonthBtn) prevMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });
         if(nextMonthBtn) nextMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); });
-        if(mobileMenuButton) mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        if(mobileMenuButton) mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden');
         
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
