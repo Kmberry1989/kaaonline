@@ -495,49 +495,53 @@
         ];
 
         const artGallery = document.getElementById('art-gallery');
-        artworks.forEach(artwork => {
-            const artElement = document.createElement('div');
-            artElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
-            artElement.innerHTML = `
-                <img src="${artwork.img}" alt="${artwork.title}" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">${artwork.title}</h3>
-                    <p class="text-gray-700">by ${artwork.artist}</p>
-                    <p class="text-lg font-semibold mt-4">${artwork.price}</p>
-                </div>
-            `;
-            artGallery.appendChild(artElement);
-        });
+        if (artGallery) {
+            artworks.forEach(artwork => {
+                const artElement = document.createElement('div');
+                artElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+                artElement.innerHTML = `
+                    <img src="${artwork.img}" alt="${artwork.title}" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">${artwork.title}</h3>
+                        <p class="text-gray-700">by ${artwork.artist}</p>
+                        <p class="text-lg font-semibold mt-4">${artwork.price}</p>
+                    </div>
+                `;
+                artGallery.appendChild(artElement);
+            });
+        }
 
         const classList = document.getElementById('class-list');
-        classes.forEach(cls => {
-            const classElement = document.createElement('div');
-            classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden flex flex-col';
-            classElement.innerHTML = `
-                <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold mb-2">${cls.title}</h3>
-                    <p class="text-gray-600 font-semibold mb-4">with ${cls.instructor}</p>
-                    <p class="text-gray-700 mb-4">${cls.description}</p>
-                    <p class="font-semibold text-gray-800">${cls.schedule}</p>
-                    <p class="text-xl font-bold text-teal-600 mt-4">${cls.price}</p>
-                </div>
-                <div class="p-6 bg-gray-50">
-                    <button class="register-btn w-full bg-teal-600 text-white font-bold py-3 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register Now</button>
-                </div>
-            `;
-            classList.appendChild(classElement);
-        });
-
-        document.querySelectorAll('.register-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const className = e.target.getAttribute('data-class');
-                createFormModal(`Register for ${className}`, [
-                    { label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' },
-                    { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' },
-                    { label: 'Phone Number', type: 'tel', id: 'phone', name: 'phone', placeholder: '123-456-7890' }
-                ], 'Submit Registration', className);
+        if (classList) {
+            classes.forEach(cls => {
+                const classElement = document.createElement('div');
+                classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden flex flex-col';
+                classElement.innerHTML = `
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">${cls.title}</h3>
+                        <p class="text-gray-600 font-semibold mb-4">with ${cls.instructor}</p>
+                        <p class="text-gray-700 mb-4">${cls.description}</p>
+                        <p class="font-semibold text-gray-800">${cls.schedule}</p>
+                        <p class="text-xl font-bold text-teal-600 mt-4">${cls.price}</p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <button class="register-btn w-full bg-teal-600 text-white font-bold py-3 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register Now</button>
+                    </div>
+                `;
+                classList.appendChild(classElement);
             });
-        });
+
+            document.querySelectorAll('.register-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const className = e.target.getAttribute('data-class');
+                    createFormModal(`Register for ${className}`, [
+                        { label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' },
+                        { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' },
+                        { label: 'Phone Number', type: 'tel', id: 'phone', name: 'phone', placeholder: '123-456-7890' }
+                    ], 'Submit Registration', className);
+                });
+            });
+        }
 
         const createModal = (content) => {
             modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">×</button>${content}</div></div></div>`;
@@ -591,15 +595,21 @@
             });
         };
         
-        document.getElementById('artworks-address').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open('https://www.google.com/maps/dir/?api=1&destination=210+N.+Main+Street,+Kokomo,+IN');
-        });
-
-        document.getElementById('artcenter-address').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open('https://www.google.com/maps/dir/?api=1&destination=525+W.+Ricketts+Street,+Kokomo,+IN');
-        });
+        const artworksAddress = document.getElementById('artworks-address');
+        if (artworksAddress) {
+            artworksAddress.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://www.google.com/maps/dir/?api=1&destination=210+N.+Main+Street,+Kokomo,+IN');
+            });
+        }
+        
+        const artcenterAddress = document.getElementById('artcenter-address');
+        if(artcenterAddress) {
+            artcenterAddress.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://www.google.com/maps/dir/?api=1&destination=525+W.+Ricketts+Street,+Kokomo,+IN');
+            });
+        }
 
         const renderCalendar = () => {
             if(!calendarGridEl) return;
