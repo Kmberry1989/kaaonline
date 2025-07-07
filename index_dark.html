@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokomo Art Association - Dark Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .dark body { background-color: #1f2937; color: #f3f4f6; }
+        .dark a { color: #60a5fa; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+<header class="bg-gray-800 sticky top-0 z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#" class="flex items-center">
+            <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/918D5B2F-EEA0-4A9E-AC15-88359C704F97.png" alt="KAA" class="h-10 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50';">
+            <span class="ml-3 text-lg font-semibold">Kokomo Art Association</span>
+        </a>
+        <button id="darkMobileBtn" class="md:hidden text-gray-200"><i class="fas fa-bars"></i></button>
+        <div id="darkNav" class="hidden md:flex space-x-6">
+            <a href="#about" class="hover:text-white">About</a>
+            <a href="#events" class="hover:text-white">Events</a>
+            <a href="#artists" class="hover:text-white">Artists</a>
+            <a href="#locations" class="hover:text-white">Locations</a>
+            <a href="#membership" class="hover:text-white">Membership</a>
+            <a href="#donate" class="hover:text-white">Donate</a>
+        </div>
+    </nav>
+    <div id="darkMobileMenu" class="md:hidden hidden bg-gray-800 px-6 pb-4">
+        <a href="#about" class="block py-2">About</a>
+        <a href="#events" class="block py-2">Events</a>
+        <a href="#artists" class="block py-2">Artists</a>
+        <a href="#locations" class="block py-2">Locations</a>
+        <a href="#membership" class="block py-2">Membership</a>
+        <a href="#donate" class="block py-2">Donate</a>
+    </div>
+</header>
+<main>
+    <section class="w-full flex justify-center" style="max-height:40vh;">
+        <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/kaacolor.png" alt="Colorful" class="w-full object-contain" style="max-width:1280px;">
+    </section>
+    <section class="py-16 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold">Your Home for the Arts Since 1926</h1>
+        <p class="text-lg mt-4 max-w-2xl mx-auto">Organized to interest the community in the Arts.</p>
+        <a href="#membership" class="mt-8 inline-block bg-teal-600 text-white py-3 px-8 rounded-full hover:bg-teal-700">Join Our Community</a>
+    </section>
+    <section id="about" class="py-16 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">About the Kokomo Art Association</h2>
+            <p class="max-w-3xl mx-auto">The Kokomo Art Association was organized in 1926 to interest the community in the Arts. Our mission is to promote the arts, support local artists, and provide creative opportunities for the entire community.</p>
+        </div>
+    </section>
+    <section id="membership" class="py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Become a Member</h2>
+            <p class="max-w-3xl mx-auto">Support the arts in Kokomo by joining the Kokomo Art Association.</p>
+            <a href="#" class="mt-6 inline-block bg-emerald-600 text-white py-3 px-8 rounded-full hover:bg-emerald-700">Join Today</a>
+        </div>
+    </section>
+    <section id="donate" class="py-16 bg-gray-800">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Donate</h2>
+            <p class="max-w-3xl mx-auto">Help us continue our mission with a donation.</p>
+            <a href="#" class="mt-6 inline-block bg-red-600 text-white py-3 px-8 rounded-full hover:bg-red-700">Donate Now</a>
+        </div>
+    </section>
+</main>
+<footer class="bg-gray-900 py-4 text-center">
+    <small>&copy; 2024 Kokomo Art Association</small>
+</footer>
+<script>
+    document.getElementById('darkMobileBtn').addEventListener('click', () => {
+        document.getElementById('darkMobileMenu').classList.toggle('hidden');
+    });
+</script>
+</body>
+</html>
