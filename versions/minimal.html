@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAA - Minimal</title>
+    <style>
+        body{font-family:Arial,sans-serif;margin:0;line-height:1.6}
+        header{background:#333;color:#fff;padding:1rem}
+        nav ul{list-style:none;display:flex;justify-content:center;margin:0;padding:0}
+        nav a{color:#fff;text-decoration:none;padding:0 1rem}
+        nav a:hover{text-decoration:underline}
+        .hero{display:flex;align-items:center;justify-content:center;background:#f5f5f5;min-height:40vh;text-align:center;padding:2rem}
+        .container{padding:2rem;max-width:800px;margin:auto}
+        footer{background:#333;color:#fff;text-align:center;padding:1rem}
+        @media(max-width:600px){nav ul{flex-direction:column;align-items:center}}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kokomo Art Association</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="hero">
+        <h2>Your Home for the Arts Since 1926</h2>
+    </div>
+    <section id="about" class="container">
+        <h3>About</h3>
+        <p>The Kokomo Art Association promotes the arts and supports local artists through galleries, classes and events.</p>
+    </section>
+    <section id="events" class="container">
+        <h3>Upcoming Events</h3>
+        <ul>
+            <li>First Friday at Artworks Gallery</li>
+            <li>Workshops and community classes all year long</li>
+        </ul>
+    </section>
+    <section id="contact" class="container">
+        <h3>Contact</h3>
+        <p>210 N. Main St, Kokomo, IN • (765) 459‑4579</p>
+    </section>
+    <footer>
+        &copy; <span id="year"></span> Kokomo Art Association
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
