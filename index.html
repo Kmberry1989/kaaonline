@@ -247,7 +247,7 @@
             <section id="classes" class="py-12 md:py-20 scroll-animate">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12">Classes & Workshops</h2>
-                    <div id="class-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div id="class-list" class="space-y-12">
                         </div>
                 </div>
             </section>
@@ -453,20 +453,44 @@
             {
                 title: 'Watercolor Techniques',
                 instructor: 'Dixie Ben-net',
-                description: 'Learn the fundamentals of watercolor painting.',
-                price: '$100'
+                description: 'Explore the transparent and luminous qualities of watercolor. This class is for beginners and those with some experience.',
+                schedule: 'Tuesdays, 6:00 PM - 8:00 PM',
+                price: '$120 for 4 weeks'
             },
             {
                 title: 'Pastels',
                 instructor: 'Avon Waters',
-                description: 'Explore the vibrant world of pastels.',
-                price: '$120'
+                description: 'Learn to create vibrant and expressive pastel paintings. We will cover composition, color theory, and layering techniques.',
+                schedule: 'Wednesdays, 1:00 PM - 3:00 PM',
+                price: '$130 for 4 weeks'
             },
             {
                 title: 'Photography',
                 instructor: 'Bob Dawson',
-                description: 'Master the art of capturing stunning photos.',
-                price: '$150'
+                description: 'This class covers the fundamentals of digital photography, including camera settings, lighting, and composition.',
+                schedule: 'Thursdays, 6:00 PM - 8:00 PM',
+                price: '$150 for 6 weeks'
+            },
+            {
+                title: 'Sip & Paint Parties',
+                instructor: 'Ramona Daniels',
+                description: 'A fun, relaxed, and social painting class. No experience necessary! Grab a friend and your favorite beverage.',
+                schedule: 'Fridays, 7:00 PM - 9:00 PM',
+                price: '$35 per session'
+            },
+            {
+                title: 'Zentangle',
+                instructor: 'Don Wilka',
+                description: 'Discover the meditative art of Zentangle. Create beautiful abstract art by drawing structured patterns.',
+                schedule: 'Saturdays, 10:00 AM - 12:00 PM',
+                price: '$40 per session'
+            },
+             {
+                title: 'Junk Journaling',
+                instructor: 'Vivian Bennett',
+                description: 'Create a unique and personal journal using found objects, scraps, and ephemera. A great way to recycle and get creative!',
+                schedule: 'Mondays, 6:00 PM - 8:00 PM',
+                price: '$50 for 2 weeks'
             }
         ];
 
@@ -488,14 +512,17 @@
         const classList = document.getElementById('class-list');
         classes.forEach(cls => {
             const classElement = document.createElement('div');
-            classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+            classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden flex flex-col';
             classElement.innerHTML = `
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">${cls.title}</h3>
-                    <p class="text-gray-700">with ${cls.instructor}</p>
-                    <p class="mt-2">${cls.description}</p>
-                    <p class="text-lg font-semibold mt-4">${cls.price}</p>
-                    <button class="register-btn mt-4 bg-teal-600 text-white font-bold py-2 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register</button>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-2xl font-bold mb-2">${cls.title}</h3>
+                    <p class="text-gray-600 font-semibold mb-4">with ${cls.instructor}</p>
+                    <p class="text-gray-700 mb-4">${cls.description}</p>
+                    <p class="font-semibold text-gray-800">${cls.schedule}</p>
+                    <p class="text-xl font-bold text-teal-600 mt-4">${cls.price}</p>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <button class="register-btn w-full bg-teal-600 text-white font-bold py-3 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register Now</button>
                 </div>
             `;
             classList.appendChild(classElement);
