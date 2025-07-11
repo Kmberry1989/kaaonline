@@ -30,13 +30,34 @@
         .sign-open { background-color: #16a34a; border-color: #0d6b2d; }
         .sign-closed { background-color: #dc2626; border-color: #991b1b; }
         .sign-holiday { background-color: #f59e0b; border-color: #b45309; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-input { display: block; width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+        .agreement-box { height: 10rem; overflow-y: auto; padding: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background-color: #f9fafb; }
+
+        /* Styles for collapsible sections */
+        .collapsible-header {
+            cursor: pointer;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .collapsible-header.is-open .toggle-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
     
+    <!-- Facebook SDK for embedded feeds -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="aBcDeFg"></script>
 
+    <!-- Header and Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center">
@@ -48,26 +69,26 @@
             <div class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-gray-600 hover:text-teal-600 font-semibold">About</a>
                 <a href="#events" class="text-gray-600 hover:text-teal-600 font-semibold">Events</a>
-                <a href="#artists" class="text-gray-600 hover:text-teal-600 font-semibold">Artists</a>
                 <a href="#locations" class="text-gray-600 hover:text-teal-600 font-semibold">Locations</a>
-                <a href="#membership" class="text-gray-600 hover:text-teal-600 font-semibold">Membership</a>
+                <a href="#membership" class="text-gray-600 hover:text-teal-600 font-semibold">Get Involved</a>
                 <a href="#donate" class="text-gray-600 hover:text-teal-600 font-semibold">Donate</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden flex items-center">
                 <i class="fas fa-bars text-gray-600 text-2xl"></i>
             </button>
         </nav>
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t">
              <a href="#about" class="block py-2 text-gray-600 hover:text-teal-600">About</a>
              <a href="#events" class="block py-2 text-gray-600 hover:text-teal-600">Events</a>
-             <a href="#artists" class="block py-2 text-gray-600 hover:text-teal-600">Artists</a>
              <a href="#locations" class="block py-2 text-gray-600 hover:text-teal-600">Locations</a>
-             <a href="#membership" class="block py-2 text-gray-600 hover:text-teal-600">Membership</a>
+             <a href="#membership" class="block py-2 text-gray-600 hover:text-teal-600">Get Involved</a>
              <a href="#donate" class="block py-2 text-gray-600 hover:text-teal-600">Donate</a>
         </div>
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="w-full bg-white flex justify-center" style="max-height: 40vh;">
             <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/kaacolor.png" alt="Colorful watercolor background" class="h-auto w-full object-contain" style="max-width: 1280px;">
         </section>
@@ -79,6 +100,7 @@
             </div>
         </section>
 
+        <!-- Main Content Sections -->
         <div id="sections-container">
             <section id="about" class="py-12 md:py-20 scroll-animate">
                 <div class="container mx-auto px-6 text-center">
@@ -88,6 +110,7 @@
                     </p>
                 </div>
             </section>
+
             <section id="events" class="py-12 md:py-20 bg-white scroll-animate">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12">Events Calendar</h2>
@@ -104,34 +127,12 @@
                     </div>
                 </div>
             </section>
-            <section id="classes" class="py-12 md:py-20 scroll-animate">
-                <div class="container mx-auto px-6">
-                    <h2 class="text-3xl font-bold text-center mb-12">Find Your Creative Outlet</h2>
-                    <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">We offer a wide variety of classes for all skill levels. Explore a new medium or sharpen your skills with our talented instructors.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Watercolor Techniques</h4><p class="text-gray-600">with Dixie Ben-net</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pastels</h4><p class="text-gray-600">with Avon Waters</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Photography</h4><p class="text-gray-600">with Bob Dawson</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Drawing</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Pottery</h4><p class="text-gray-600">with Marilyn Aleman</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Zentangle</h4><p class="text-gray-600">with Don Wilka</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Sip & Paint Parties</h4><p class="text-gray-600">with Ramona Daniels</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Painting</h4><p class="text-gray-600">with Ramona Daniels</p></div>
-                        <div class="border border-gray-200 rounded-lg p-6"><h4 class="font-bold text-lg">Junk Journaling</h4><p class="text-gray-600">with Vivian Bennett</p></div>
-                    </div>
-                </div>
-            </section>
-            <section id="artists" class="py-12 md:py-20 bg-white scroll-animate">
-                <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-3xl font-bold mb-4">Meet Our Artists</h2>
-                    <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">Our association is proud to be home to a diverse and talented group of local artists. Click on a name to see a sample of their work and learn their story.</p>
-                    <div id="artist-list" class="flex flex-wrap justify-center gap-x-4 gap-y-3"></div>
-                </div>
-            </section>
+            
             <section id="locations" class="py-12 md:py-20 scroll-animate">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl font-bold text-center mb-12">Visit Our Locations</h2>
                     <div class="space-y-16">
+                        <!-- Artworks Gallery -->
                         <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                                 <div>
@@ -142,7 +143,7 @@
                                     <p class="mb-6 text-gray-600">Our retail co-op gallery in downtown Kokomo features member art, receptions, and studio spaces for rent.</p>
                                     <div class="mb-6 bg-white p-4 rounded-md border">
                                         <h4 class="font-bold text-lg mb-2">Contact Information</h4>
-                                        <div class="flex items-center text-gray-700"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>210 N. Main Street, Kokomo, IN</span></div>
+                                        <a href="#" id="artworks-address" class="flex items-center text-gray-700 hover:text-teal-600"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>210 N. Main Street, Kokomo, IN</span></a>
                                         <div class="flex items-center text-gray-700 mt-2"><i class="fas fa-phone w-6 text-center mr-2 text-teal-600"></i><span>(765) 459-4579</span></div>
                                     </div>
                                     <div class="bg-white p-4 rounded-md border">
@@ -163,6 +164,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Kokomo Art Center -->
                         <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
                              <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                                 <div>
@@ -173,7 +175,7 @@
                                     <p class="mb-6 text-gray-600">Located in beautiful Highland Park, the Art Center houses our Permanent Collection and hosts classes, competitions, and camps.</p>
                                     <div class="mb-6 bg-white p-4 rounded-md border">
                                         <h4 class="font-bold text-lg mb-2">Contact Information</h4>
-                                        <div class="flex items-center text-gray-700"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>525 W. Ricketts Street, Kokomo, IN</span></div>
+                                        <a href="#" id="artcenter-address" class="flex items-center text-gray-700 hover:text-teal-600"><i class="fas fa-map-marker-alt w-6 text-center mr-2 text-teal-600"></i><span>525 W. Ricketts Street, Kokomo, IN</span></a>
                                         <div class="flex items-center text-gray-700 mt-2"><i class="fas fa-phone w-6 text-center mr-2 text-teal-600"></i><span>(765) 459-4579</span></div>
                                     </div>
                                     <div class="bg-white p-4 rounded-md border">
@@ -198,11 +200,13 @@
                 </div>
                 <iframe width="1280" height="720" src="https://www.artsteps.com/embed/6870dcb02587d53d39f65fa4/1280/720" frameborder="0" allowfullscreen></iframe>
             </section>
-            <section id="membership" class="py-12 md:py-20 bg-white scroll-animate">
+            
+            <section id="membership" class="py-12 md:py-20 scroll-animate">
                  <div class="container mx-auto px-6">
-                    <h2 class="text-3xl font-bold text-center mb-2">Membership Benefits</h2>
+                    <h2 class="text-3xl font-bold text-center mb-2">Become a Member</h2>
                      <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">To join the KAA, please select a membership level below or mail a check payable to: Kokomo Art Association, 210 N. Main St. Kokomo, IN 46901.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                        <!-- Membership Tiers -->
                         <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition"><h3 class="text-2xl font-bold text-center">Student</h3><p class="text-4xl font-bold my-4 text-center">$15<span class="text-base font-normal">/year</span></p><ul class="text-gray-600 space-y-3 mb-6 text-left flex-grow text-sm"><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Sell on First Fridays (No Commission)</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Sell during Holidays (10% Commission)</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Artist Listing on KAA Website</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Show Entry Fees</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Workshop Fees</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Gallery Facility Rentals</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Receive KAA Monthly Newsletter</span></li></ul><button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Student</button></div>
                         <div class="border-2 border-teal-500 rounded-lg p-6 bg-white shadow-lg flex flex-col h-full relative card-hover transition"><span class="bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2">Most Popular</span><h3 class="text-2xl font-bold text-center">Individual</h3><p class="text-4xl font-bold my-4 text-center">$29<span class="text-base font-normal">/year</span></p><ul class="text-gray-600 space-y-3 mb-6 text-left flex-grow text-sm"><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Sell on First Fridays (No Commission)</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Sell during Holidays (10% Commission)</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Artist Listing on KAA Website</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Show Entry Fees</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Workshop Fees</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Discounted Gallery Facility Rentals</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Receive KAA Monthly Newsletter</span></li></ul><button class="join-form-trigger mt-auto bg-teal-500 text-white w-full py-2 rounded-md hover:bg-teal-600 transition text-center">Join as Individual</button></div>
                         <div class="border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full card-hover transition"><h3 class="text-2xl font-bold text-center">Business</h3><p class="text-4xl font-bold my-4 text-center">$99<span class="text-base font-normal">/year</span></p><ul class="text-gray-600 space-y-3 mb-6 text-left flex-grow text-sm"><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Listing on KAA Website</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>10% Discount on Gallery Rentals</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Advertise/Sell on First Fridays</span></li><li class="flex items-center"><i class="fas fa-check text-teal-500 mr-3"></i><span>Receive KAA Monthly Newsletter</span></li></ul><button class="join-form-trigger mt-auto bg-teal-600 text-white w-full py-2 rounded-md hover:bg-teal-700 transition text-center">Join as Business</button></div>
@@ -212,13 +216,26 @@
                     </div>
                 </div>
             </section>
-            <section id="donate" class="py-12 md:py-20 bg-white text-gray-800 scroll-animate">
+
+             <section id="volunteer" class="py-12 md:py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Volunteer With Us</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed mb-8">
+                        We are always looking for passionate individuals to help us with various tasks and events. Whether you can spare a few hours a month or want to be a regular contributor, we have a place for you.
+                    </p>
+                    <a href="https://github.com/Kmberry1989/kaaonline/blob/main/Volunteer%20application.pdf" target="_blank" class="inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-700 transition duration-300">
+                        Download Application
+                    </a>
+                </div>
+            </section>
+
+            <section id="donate" class="py-12 md:py-20 text-gray-800 scroll-animate">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-12">
                         <h2 class="text-4xl font-bold">Support Your Local Arts</h2>
                         <p class="mt-4 max-w-2xl mx-auto text-gray-600">Your generous donations help us provide classes, maintain our galleries, and support the vibrant arts community in Kokomo. Every contribution makes a difference!</p>
                     </div>
-                    <div class="max-w-3xl mx-auto bg-gray-50 border border-gray-200 rounded-lg shadow-xl p-8">
+                    <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-lg shadow-xl p-8">
                          <div class="text-center">
                             <a href="https://kokomoartassociation.networkforgood.com/projects/218762-donate-to-the-kokomo-art-association-llc" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-bold text-xl py-4 px-10 rounded-lg hover:bg-teal-700 transition-transform transform hover:scale-105">
                                 Donate Securely
@@ -228,15 +245,127 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Community Hub for Collapsible Sections -->
+            <section id="community-hub" class="py-12 md:py-20 bg-white scroll-animate">
+                <div class="container mx-auto px-6 space-y-10">
+                    <h2 class="text-3xl font-bold text-center text-gray-800">Community Hub & Artist Opportunities</h2>
+                    
+                    <!-- Art for Sale -->
+                    <div id="store-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="collapsible-header flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-gray-800">Art for Sale</h3>
+                            <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="pt-8">
+                                <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">This is a gallery of what's available in our stores. All items are available for purchase in person.</p>
+                                <div id="art-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    <!-- Artworks will be dynamically inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Artist Alley -->
+                    <div id="artist-alley-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="collapsible-header flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-gray-800">Artist Alley Project</h3>
+                            <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="pt-8">
+                                <div class="max-w-4xl mx-auto text-gray-600 leading-relaxed">
+                                    <h4 class="text-xl font-bold text-center mb-4">12th Annual Call for Entries</h4>
+                                    <p class="mb-4">In 2012, the Kokomo Art Association and the Greater Kokomo Downtown Association launched a collaborative effort to revitalize a forgotten alley in downtown Kokomo...</p>
+                                    <form action="https://formspree.io/f/kokomoartassociation2014@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6 bg-white p-8 rounded-lg shadow-lg mt-6">
+                                        <!-- Form fields remain the same -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div><label for="artist-name" class="form-label">Artist Name</label><input type="text" id="artist-name" name="artist-name" class="form-input" required></div>
+                                            <div><label for="artist-phone" class="form-label">Phone</label><input type="tel" id="artist-phone" name="artist-phone" class="form-input" required></div>
+                                        </div>
+                                        <div><label for="artist-address" class="form-label">Address</label><input type="text" id="artist-address" name="artist-address" class="form-input" required></div>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            <div><label for="artist-city" class="form-label">City</label><input type="text" id="artist-city" name="artist-city" class="form-input" required></div>
+                                            <div><label for="artist-state" class="form-label">State</label><input type="text" id="artist-state" name="artist-state" class="form-input" required></div>
+                                            <div><label for="artist-zip" class="form-label">Zip Code</label><input type="text" id="artist-zip" name="artist-zip" class="form-input" required></div>
+                                        </div>
+                                        <div><label for="artist-email" class="form-label">Email</label><input type="email" id="artist-email" name="artist-email" class="form-input" required></div>
+                                        <hr class="my-6">
+                                        <div><label for="artwork-title" class="form-label">Artwork Title</label><input type="text" id="artwork-title" name="artwork-title" class="form-input" required></div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div><label for="artwork-media" class="form-label">Materials/Medium</label><input type="text" id="artwork-media" name="artwork-media" class="form-input" required></div>
+                                            <div><label for="artwork-drawing" class="form-label">Detailed Drawing/Sketch</label><input type="file" id="artwork-drawing" name="artwork-drawing" class="form-input" required></div>
+                                        </div>
+                                        <fieldset>
+                                            <legend class="form-label">Board Size Requested (for Murals)</legend>
+                                            <div class="grid grid-cols-2 gap-6">
+                                                <div><label for="board-height" class="text-sm">Height (ft)</label><input type="number" id="board-height" name="board-height" class="form-input"></div>
+                                                <div><label for="board-width" class="text-sm">Width (ft)</label><input type="number" id="board-width" name="board-width" class="form-input"></div>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend class="form-label">Final Dimensions (H x W x D)</legend>
+                                            <div class="grid grid-cols-3 gap-6"><input type="number" name="final-height" placeholder="Height (ft)" class="form-input"><input type="number" name="final-width" placeholder="Width (ft)" class="form-input"><input type="number" name="final-depth" placeholder="Depth (in)" class="form-input"></div>
+                                        </fieldset>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            <div><label for="artwork-weight" class="form-label">Weight (lbs)</label><input type="number" id="artwork-weight" name="artwork-weight" class="form-input"></div>
+                                            <div><label for="artwork-valuation" class="form-label">Insurance Valuation ($)</label><input type="text" id="artwork-valuation" name="artwork-valuation" class="form-input" required></div>
+                                            <div><label for="artwork-price" class="form-label">Sales Price ($)</label><input type="text" id="artwork-price" name="artwork-price" class="form-input"></div>
+                                        </div>
+                                        <fieldset>
+                                            <legend class="form-label">Agreement</legend>
+                                            <div class="agreement-box text-sm"><p><strong>HOLD HARMLESS AND PUBLICITY AGREEMENT:</strong> ...</p></div>
+                                            <div class="mt-4"><label class="flex items-center"><input type="checkbox" name="agreement" class="h-4 w-4 text-teal-600 border-gray-300 rounded" required><span class="ml-2 text-gray-700">I have read and agree to the terms.</span></label></div>
+                                        </fieldset>
+                                        <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-full hover:bg-teal-700 transition duration-300">Submit Application</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Classes & Workshops -->
+                    <div id="classes-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="collapsible-header flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-gray-800">Classes & Workshops</h3>
+                            <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="pt-8">
+                                <div id="class-list" class="space-y-12">
+                                    <!-- Classes will be dynamically inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meet Our Artists -->
+                    <div id="artists-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <div class="collapsible-header flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-gray-800">Meet Our Artists</h3>
+                            <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="pt-8 text-center">
+                                <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">Our association is proud to be home to a diverse and talented group of local artists. Click on a name to see a sample of their work and learn their story.</p>
+                                <div id="artist-list" class="flex flex-wrap justify-center gap-x-4 gap-y-3">
+                                    <!-- Artist names will be dynamically inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
         </div>
     </main>
 
     <footer id="footer" class="bg-white text-gray-800 border-t">
         <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="md:col-span-2"><h4 class="font-bold text-lg mb-4 text-gray-900">About KAA</h4><p class="text-gray-600">The Kokomo Art Association was organized in 1926. Bylaws and a constitution were established in 1962, and not-for-profit status was attained in 1981. We are dedicated to promoting the arts and supporting local artists in our community.</p></div>
-                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Quick Links</h4><ul><li class="mb-2"><a href="#events" class="text-gray-600 hover:text-teal-600">Events</a></li><li class="mb-2"><a href="#classes" class="text-gray-600 hover:text-teal-600">Classes</a></li><li class="mb-2"><a href="#artists" class="text-gray-600 hover:text-teal-600">Artists</a></li><li class="mb-2"><a href="#membership" class="text-gray-600 hover:text-teal-600">Membership</a></li><li class="mb-2"><a href="#donate" class="text-gray-600 hover:text-teal-600">Donate</a></li></ul></div>
-                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Join Our Newsletter</h4><form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 border border-gray-300 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">&rarr;</button></div></form><div class="flex space-x-4 mt-4"><a href="https://www.facebook.com/KokomoArtAssociation/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-facebook-square"></i></a><a href="https://www.instagram.com/kokomoartassociation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-instagram-square"></i></a></div></div>
+                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Join Our Newsletter</h4><form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 border border-gray-300 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">→</button></div></form><div class="flex space-x-4 mt-4"><a href="https://www.facebook.com/KokomoArtAssociation/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-facebook-square"></i></a><a href="https://www.instagram.com/kokomoartassociation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-instagram-square"></i></a></div></div>
             </div>
             <div class="border-t border-gray-200 mt-12 pt-8">
                 <h4 class="font-bold text-lg mb-6 text-center text-gray-700">Our Valued Sponsors</h4>
@@ -250,14 +379,16 @@
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/blick.png" alt="Blick Art Materials Logo" class="h-10 w-auto">
                 </div>
             </div>
-            <div class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600"><p>&copy; <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p></div>
+            <div class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600"><p>© <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p></div>
         </div>
     </footer>
     
+    <!-- Modal placeholder -->
     <div id="modal-placeholder"></div>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // --- DATA ---
         const artistData = {
             'Marilyn Aleman': { img: 'https://placehold.co/400x400/8d5b3c/f5efe6?text=Pottery', bio: 'I was born in Marion, Indiana...', type: 'Pottery & Drawing', kaaBioUrl: 'https://www.kaaonline.org/marilyn-aleman' },
             'Steve Creighton': { img: 'https://placehold.co/400x400/0891b2/ecfeff?text=Oil+Painting', bio: 'Steve Creighton grew up near Warsaw, Indiana...', type: 'Oil Painting', kaaBioUrl: 'https://www.kaaonline.org/steve-creighton', externalLinks: [{ label: 'Website', url: 'http://www.stevecreightonart.com' }] },
@@ -275,8 +406,24 @@
             '2025-3-15': [ { title: 'Junk Journal Workshop', time: '12:00 PM - 4:00 PM', description: 'Create a handmade journal from recycled and repurposed materials with talented artist Vivian Bennett.', cost: '$62.50 (all materials included)' } ],
             '2025-7-13': [ { title: 'Reception for Brandon C. Bass', time: '12:00 PM - 3:00 PM', description: 'Join us for a reception celebrating our July guest artist, Brandon C. Bass. Light refreshments will be served.', cost: 'Free to attend' } ]
         };
-        let currentDate = new Date(2025, 6, 1);
+        let currentDate = new Date();
         
+        const artworks = [
+            { img: 'https://placehold.co/600x400/3b82f6/ffffff?text=Artwork+1', title: 'Serenity in Blue', artist: 'Jane Doe', price: '$350' },
+            { img: 'https://placehold.co/600x400/16a34a/ffffff?text=Artwork+2', title: 'Forest Whispers', artist: 'John Smith', price: '$500' },
+            { img: 'https://placehold.co/600x400/ef4444/ffffff?text=Artwork+3', title: 'Autumn Blaze', artist: 'Emily White', price: '$425' }
+        ];
+
+        const classes = [
+            { title: 'Watercolor Techniques', instructor: 'Dixie Ben-net', description: 'Explore the transparent and luminous qualities of watercolor. This class is for beginners and those with some experience.', schedule: 'Tuesdays, 6:00 PM - 8:00 PM', price: '$120 for 4 weeks' },
+            { title: 'Pastels', instructor: 'Avon Waters', description: 'Learn to create vibrant and expressive pastel paintings. We will cover composition, color theory, and layering techniques.', schedule: 'Wednesdays, 1:00 PM - 3:00 PM', price: '$130 for 4 weeks' },
+            { title: 'Photography', instructor: 'Bob Dawson', description: 'This class covers the fundamentals of digital photography, including camera settings, lighting, and composition.', schedule: 'Thursdays, 6:00 PM - 8:00 PM', price: '$150 for 6 weeks' },
+            { title: 'Sip & Paint Parties', instructor: 'Ramona Daniels', description: 'A fun, relaxed, and social painting class. No experience necessary! Grab a friend and your favorite beverage.', schedule: 'Fridays, 7:00 PM - 9:00 PM', price: '$35 per session' },
+            { title: 'Zentangle', instructor: 'Don Wilka', description: 'Discover the meditative art of Zentangle. Create beautiful abstract art by drawing structured patterns.', schedule: 'Saturdays, 10:00 AM - 12:00 PM', price: '$40 per session' },
+            { title: 'Junk Journaling', instructor: 'Vivian Bennett', description: 'Create a unique and personal journal using found objects, scraps, and ephemera. A great way to recycle and get creative!', schedule: 'Mondays, 6:00 PM - 8:00 PM', price: '$50 for 2 weeks' }
+        ];
+
+        // --- DOM Elements ---
         const modalPlaceholder = document.getElementById('modal-placeholder');
         const artistListContainer = document.getElementById('artist-list');
         const monthYearEl = document.getElementById('month-year');
@@ -285,9 +432,12 @@
         const nextMonthBtn = document.getElementById('next-month-btn');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const artGallery = document.getElementById('art-gallery');
+        const classList = document.getElementById('class-list');
 
+        // --- MODAL LOGIC ---
         const createModal = (content) => {
-            modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">&times;</button>${content}</div></div></div>`;
+            modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">×</button>${content}</div></div></div>`;
             setTimeout(() => {
                 const overlay = document.getElementById('modal-overlay');
                 if (overlay) overlay.classList.add('visible');
@@ -305,12 +455,96 @@
                 setTimeout(() => { modalPlaceholder.innerHTML = ''; }, 300);
             }
         };
-
-        const createFormModal = (title, fields, submitText) => {
-            let fieldsHtml = fields.map(f => `<div class="mb-4"><label for="${f.id}" class="block text-sm font-medium text-gray-700 mb-1">${f.label}</label><${f.type === 'textarea' ? 'textarea rows="4"' : `input type="${f.type}"`} id="${f.id}" name="${f.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" placeholder="${f.placeholder || ''}">${f.type === 'textarea' ? '' : ''}</${f.type === 'textarea' ? 'textarea' : 'input'}></div>`).join('');
-            createModal(`<h2 class="text-2xl font-bold text-center mb-6">${title}</h2><form onsubmit="return false;">${fieldsHtml}<button type="submit" class="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">${submitText}</button></form>`);
-        };
         
+        const showMessageModal = (title, message) => {
+            const content = `
+                <h2 class="text-2xl font-bold text-center mb-4">${title}</h2>
+                <p class="text-center text-gray-600">${message}</p>
+                <button id="message-modal-close-btn" class="mt-6 w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">Close</button>
+            `;
+            createModal(content);
+            document.getElementById('message-modal-close-btn').addEventListener('click', closeModal);
+        };
+
+        const createFormModal = (title, fields, submitText, formSubject) => {
+            let fieldsHtml = fields.map(f => `<div class="mb-4"><label for="${f.id}" class="block text-sm font-medium text-gray-700 mb-1">${f.label}</label><input type="${f.type}" id="${f.id}" name="${f.name}" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" placeholder="${f.placeholder || ''}"></div>`).join('');
+            const formHtml = `
+                <h2 class="text-2xl font-bold text-center mb-6">${title}</h2>
+                <form id="popup-form" action="https://formspree.io/f/kokomoartassociation2014@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="${formSubject}">
+                    ${fieldsHtml}
+                    <button type="submit" class="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">${submitText}</button>
+                </form>
+            `;
+            createModal(formHtml);
+
+            const form = document.getElementById('popup-form');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                closeModal();
+                setTimeout(() => {
+                    if (response.ok) {
+                        showMessageModal('Success!', 'Your submission was received. We will be in touch shortly.');
+                    } else {
+                        showMessageModal('Error', 'There was a problem with your submission. Please try again later.');
+                    }
+                }, 350);
+            });
+        };
+
+        // --- DYNAMIC CONTENT RENDERING ---
+        if (artGallery) {
+            artworks.forEach(artwork => {
+                const artElement = document.createElement('div');
+                artElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+                artElement.innerHTML = `
+                    <img src="${artwork.img}" alt="${artwork.title}" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">${artwork.title}</h3>
+                        <p class="text-gray-700">by ${artwork.artist}</p>
+                        <p class="text-lg font-semibold mt-4">${artwork.price}</p>
+                    </div>
+                `;
+                artGallery.appendChild(artElement);
+            });
+        }
+
+        if (classList) {
+            classes.forEach(cls => {
+                const classElement = document.createElement('div');
+                classElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden flex flex-col';
+                classElement.innerHTML = `
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">${cls.title}</h3>
+                        <p class="text-gray-600 font-semibold mb-4">with ${cls.instructor}</p>
+                        <p class="text-gray-700 mb-4">${cls.description}</p>
+                        <p class="font-semibold text-gray-800">${cls.schedule}</p>
+                        <p class="text-xl font-bold text-teal-600 mt-4">${cls.price}</p>
+                    </div>
+                    <div class="p-6 bg-gray-50">
+                        <button class="register-btn w-full bg-teal-600 text-white font-bold py-3 px-4 rounded hover:bg-teal-700 transition duration-300" data-class="${cls.title}">Register Now</button>
+                    </div>
+                `;
+                classList.appendChild(classElement);
+            });
+        }
+
+        if(artistListContainer) {
+            Object.keys(artistData).sort().forEach(name => {
+                const artistSpan = document.createElement('span');
+                artistSpan.className = 'artist-profile-trigger bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300';
+                artistSpan.textContent = name;
+                artistListContainer.appendChild(artistSpan);
+            });
+        }
+
         const renderCalendar = () => {
             if(!calendarGridEl) return;
             const year = currentDate.getFullYear();
@@ -360,15 +594,20 @@
             }
         };
 
-        if(artistListContainer) {
-            Object.keys(artistData).forEach(name => {
-                const artistSpan = document.createElement('span');
-                artistSpan.className = 'artist-profile-trigger bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300';
-                artistSpan.textContent = name;
-                artistListContainer.appendChild(artistSpan);
+        // --- COLLAPSIBLE SECTIONS ---
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('is-open');
+                const content = header.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
             });
-        }
-        
+        });
+
+        // --- EVENT LISTENERS ---
         document.body.addEventListener('click', function(event) {
             if (event.target.matches('.artist-profile-trigger')) {
                 const artistName = event.target.textContent;
@@ -377,15 +616,31 @@
                 let linksHtml = '';
                 if(data.externalLinks && data.externalLinks.length > 0) {
                     linksHtml += '<div class="mt-4 pt-4 border-t border-gray-200"><h4 class="font-semibold text-gray-800 mb-2">Find them online:</h4><div class="flex flex-wrap gap-x-4 gap-y-2">';
-                    data.externalLinks.forEach(link => { linksHtml += `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold">${link.label} &rarr;</a>`; });
+                    data.externalLinks.forEach(link => { linksHtml += `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold">${link.label} →</a>`; });
                     linksHtml += '</div></div>';
                 }
-                const content = `<div class="flex flex-col md:flex-row gap-8 items-start"><div class="md:w-1/3 flex-shrink-0"><img src="${data.img}" alt="Sample of ${data.type} by ${artistName}" class="w-full h-auto rounded-lg shadow-md"></div><div class="md:w-2/3"><h2 class="text-3xl font-bold mb-2">${artistName}</h2><p class="font-semibold text-teal-600 mb-4">${data.type}</p><p class="text-gray-600">${data.bio}${data.kaaBioUrl ? `<a href="${data.kaaBioUrl}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold ml-1">Read Full Bio &rarr;</a>` : ''}</p>${linksHtml}</div></div>`;
+                const content = `<div class="flex flex-col md:flex-row gap-8 items-start"><div class="md:w-1/3 flex-shrink-0"><img src="${data.img}" alt="Sample of ${data.type} by ${artistName}" class="w-full h-auto rounded-lg shadow-md"></div><div class="md:w-2/3"><h2 class="text-3xl font-bold mb-2">${artistName}</h2><p class="font-semibold text-teal-600 mb-4">${data.type}</p><p class="text-gray-600">${data.bio}${data.kaaBioUrl ? `<a href="${data.kaaBioUrl}" target="_blank" rel="noopener noreferrer" class="text-teal-600 hover:text-teal-800 font-semibold ml-1">Read Full Bio →</a>` : ''}</p>${linksHtml}</div></div>`;
                 createModal(content);
             }
-            if (event.target.matches('.join-form-trigger')) createFormModal('KAA Membership Application', [{ label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' }], 'Submit Application');
-            if (event.target.matches('.contact-form-trigger')) createFormModal('Contact Us', [{ label: 'Your Name', type: 'text', id: 'name', name: 'name' }, { label: 'Email', type: 'email', id: 'email', name: 'email' }, {label: 'Message', type: 'textarea', id: 'message', name: 'message'}], 'Send Message');
-            if (event.target.matches('.event-form-trigger-modal')) createFormModal('Event Registration', [{ label: 'Full Name', type: 'text', id: 'name', name: 'name' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email' }], 'Complete Registration');
+            if (event.target.matches('.register-btn')) {
+                const className = event.target.getAttribute('data-class');
+                createFormModal(`Register for ${className}`, 
+                    [{ label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' }, { label: 'Phone Number', type: 'tel', id: 'phone', name: 'phone', placeholder: '123-456-7890' }], 
+                    'Submit Registration', `Class Registration: ${className}`
+                );
+            }
+            if (event.target.matches('.join-form-trigger')) {
+                createFormModal('KAA Membership Application', 
+                    [{ label: 'Full Name', type: 'text', id: 'name', name: 'name', placeholder: 'Jane Doe' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email', placeholder: 'jane.doe@example.com' }], 
+                    'Submit Application', 'KAA Membership Application'
+                );
+            }
+            if (event.target.matches('.event-form-trigger-modal')) {
+                createFormModal('Event Registration', 
+                    [{ label: 'Full Name', type: 'text', id: 'name', name: 'name' }, { label: 'Email Address', type: 'email', id: 'email', name: 'email' }], 
+                    'Complete Registration', 'Event Registration'
+                );
+            }
         });
 
         if(prevMonthBtn) prevMonthBtn.addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); });
@@ -399,11 +654,29 @@
                     e.preventDefault();
                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
                     const targetElement = document.querySelector(href);
-                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (targetElement) {
+                         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
         });
+
+        const artworksAddress = document.getElementById('artworks-address');
+        if (artworksAddress) {
+            artworksAddress.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://www.google.com/maps/dir/?api=1&destination=210+N.+Main+Street,+Kokomo,+IN');
+            });
+        }
+        const artcenterAddress = document.getElementById('artcenter-address');
+        if(artcenterAddress) {
+            artcenterAddress.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://www.google.com/maps/dir/?api=1&destination=525+W.+Ricketts+Street,+Kokomo,+IN');
+            });
+        }
         
+        // --- INITIALIZATION ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }});
         }, { threshold: 0.1 });
@@ -417,6 +690,7 @@
         const artworksHours = { 0: null, 1: [12, 16], 2: [12, 16], 3: [12, 16], 4: [12, 16], 5: [12, 16], 6: [11, 15] };
         const artCenterHours = { 0: null, 1: null, 2: [13, 16], 3: [13, 16], 4: [13, 16], 5: [13, 16], 6: [13, 16] };
         const getHolidays = (year) => [ new Date(year, 0, 1).toDateString(), new Date(year, 0, 20).toDateString(), new Date(year, 4, 26).toDateString(), new Date(year, 6, 4).toDateString(), new Date(year, 8, 1).toDateString(), new Date(year, 10, 27).toDateString(), new Date(year, 11, 25).toDateString() ];
+        
         const getStoreStatus = (storeHours) => {
             const now = new Date();
             const timeZone = 'America/Indiana/Indianapolis';
@@ -434,6 +708,7 @@
             }
             return { text: 'Closed', colorClass: 'sign-closed' };
         };
+
         const updateSigns = () => {
             const artworksSign = document.getElementById('artworks-sign');
             const artCenterSign = document.getElementById('artcenter-sign');
