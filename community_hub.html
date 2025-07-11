@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokomo Art Association - Community Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .scroll-animate { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .scroll-animate.is-visible { opacity: 1; transform: translateY(0); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.visible { opacity: 1; pointer-events: all; }
+        .modal-container { background: white; border-radius: 8px; padding: 2rem; max-width: 90%; width: 600px; max-height: 90vh; overflow-y: auto; position: relative; transform: scale(0.95); transition: transform 0.3s ease, opacity 0.3s ease; }
+        .modal-overlay.visible .modal-container { transform: scale(1); }
+        .hanging-sign {
+            background-color: #4a3f35; color: white; padding: 8px 16px; border-radius: 6px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            border: 3px solid #382f28; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            display: inline-block; transition: background-color 0.3s;
+        }
+        .sign-open { background-color: #16a34a; border-color: #0d6b2d; }
+        .sign-closed { background-color: #dc2626; border-color: #991b1b; }
+        .sign-holiday { background-color: #f59e0b; border-color: #b45309; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-input { display: block; width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+        .agreement-box { height: 10rem; overflow-y: auto; padding: 1rem; border: 1px solid #d1d5db; border-radius: 0.375rem; background-color: #f9fafb; }
+
+        /* Styles for collapsible sections */
+        .collapsible-header {
+            cursor: pointer;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .collapsible-header.is-open .toggle-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Facebook SDK for embedded feeds -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="aBcDeFg"></script>
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/918D5B2F-EEA0-4A9E-AC15-88359C704F97.png" alt="Kokomo Art Association Logo" class="h-12 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50/000000/FFFFFF?text=KAA+Logo';">
+                    <span class="hidden md:inline ml-4 text-black text-lg font-semibold">Kokomo Art Association</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="about.html" class="text-gray-600 hover:text-teal-600 font-semibold">About</a>
+                <a href="events.html" class="text-gray-600 hover:text-teal-600 font-semibold">Events</a>
+                <a href="locations.html" class="text-gray-600 hover:text-teal-600 font-semibold">Locations</a>
+                <a href="get_involved.html" class="text-gray-600 hover:text-teal-600 font-semibold">Get Involved</a>
+                <a href="donate.html" class="text-gray-600 hover:text-teal-600 font-semibold">Donate</a>
+                <a href="community_hub.html" class="text-gray-600 hover:text-teal-600 font-semibold">Community Hub</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <i class="fas fa-bars text-gray-600 text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t">
+             <a href="about.html" class="block py-2 text-gray-600 hover:text-teal-600">About</a>
+             <a href="events.html" class="block py-2 text-gray-600 hover:text-teal-600">Events</a>
+             <a href="locations.html" class="block py-2 text-gray-600 hover:text-teal-600">Locations</a>
+             <a href="get_involved.html" class="block py-2 text-gray-600 hover:text-teal-600">Get Involved</a>
+             <a href="donate.html" class="block py-2 text-gray-600 hover:text-teal-600">Donate</a>
+             <a href="community_hub.html" class="block py-2 text-gray-600 hover:text-teal-600">Community Hub</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="w-full bg-white flex justify-center" style="max-height: 40vh;">
+            <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/kaacolor.png" alt="Colorful watercolor background" class="h-auto w-full object-contain" style="max-width: 1280px;">
+        </section>
+
+        <!-- Community Hub Section -->
+        <section id="community-hub" class="py-12 md:py-20 bg-white scroll-animate">
+            <div class="container mx-auto px-6 space-y-10">
+                <h2 class="text-3xl font-bold text-center text-gray-800">Community Hub & Artist Opportunities</h2>
+
+                <!-- Art Steps Virtual Tour -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center">
+                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Step Inside Artworks Gallery Virtually!</h3>
+                     <p class="text-lg text-gray-600 mb-6 max-w-3xl mx-auto">Take a virtual tour of our Artworks Gallery to browse and shop a selection of beautiful pieces available in store.</p>
+                     <div class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-xl" style="padding-top: 56.25%;">
+                         <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.artsteps.com/embed/6870dcb02587d53d39f65fa4/1280/720" frameborder="0" allowfullscreen></iframe>
+                     </div>
+                 </div>
+
+                <!-- Art for Sale -->
+                <div id="store-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="collapsible-header flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Art for Sale</h3>
+                        <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="pt-8">
+                            <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">This is a gallery of what's available in our stores. All items are available for purchase in person.</p>
+                            <div id="art-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <!-- Artworks will be dynamically inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artist Alley -->
+                <div id="artist-alley-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="collapsible-header flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Artist Alley Project</h3>
+                        <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="pt-8">
+                            <div class="max-w-4xl mx-auto text-gray-600 leading-relaxed">
+                                <h4 class="text-xl font-bold text-center mb-4">12th Annual Call for Entries</h4>
+                                <p class="mb-4">In 2012, the Kokomo Art Association and the Greater Kokomo Downtown Association launched a collaborative effort to revitalize a forgotten alley in downtown Kokomo. This initiative transforms the alley into a vibrant outdoor gallery space, showcasing local artists' mural-style works on panels. The Artist Alley Project provides a unique opportunity for artists to display their creativity publicly and contributes to the beautification and cultural vibrancy of downtown Kokomo.</p>
+                                <p class="mb-6">Keep an eye on our events calendar or social media for the annual call for entries and the unveiling of new murals!</p>
+
+                                <!-- Form -->
+                                <form action="https://formspree.io/f/kokomoartassociation2014@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6 bg-white p-8 rounded-lg shadow-lg mt-6">
+                                    <h4 class="text-xl font-bold mb-6 text-center">Application Form</h4>
+                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                         <div><label for="artist-name" class="form-label">Artist Name</label><input type="text" id="artist-name" name="artist-name" class="form-input" required></div>
+                                         <div><label for="artist-phone" class="form-label">Phone</label><input type="tel" id="artist-phone" name="artist-phone" class="form-input" required></div>
+                                     </div>
+                                     <div><label for="artist-address" class="form-label">Address</label><input type="text" id="artist-address" name="artist-address" class="form-input" required></div>
+                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                         <div><label for="artist-city" class="form-label">City</label><input type="text" id="artist-city" name="artist-city" class="form-input" required></div>
+                                         <div><label for="artist-state" class="form-label">State</label><input type="text" id="artist-state" name="artist-state" class="form-input" required></div>
+                                         <div><label for="artist-zip" class="form-label">Zip Code</label><input type="text" id="artist-zip" name="artist-zip" class="form-input" required></div>
+                                     </div>
+                                     <div><label for="artist-email" class="form-label">Email</label><input type="email" id="artist-email" name="artist-email" class="form-input" required></div>
+                                     <hr class="my-6">
+                                     <div><label for="artwork-title" class="form-label">Artwork Title</label><input type="text" id="artwork-title" name="artwork-title" class="form-input" required></div>
+                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                         <div><label for="artwork-media" class="form-label">Materials/Medium</label><input type="text" id="artwork-media" name="artwork-media" class="form-input" required></div>
+                                         <div><label for="artwork-drawing" class="form-label">Detailed Drawing/Sketch</label><input type="file" id="artwork-drawing" name="artwork-drawing" class="form-input" required></div>
+                                     </div>
+                                     <fieldset>
+                                         <legend class="form-label">Board Size Requested (for Murals)</legend>
+                                         <div class="grid grid-cols-2 gap-6">
+                                             <div><label for="board-height" class="text-sm">Height (ft)</label><input type="number" id="board-height" name="board-height" class="form-input"></div>
+                                             <div><label for="board-width" class="text-sm">Width (ft)</label><input type="number" id="board-width" name="board-width" class="form-input"></div>
+                                         </div>
+                                     </fieldset>
+                                     <fieldset>
+                                         <legend class="form-label">Final Dimensions (H x W x D)</legend>
+                                         <div class="grid grid-cols-3 gap-6"><input type="number" name="final-height" placeholder="Height (ft)" class="form-input"><input type="number" name="final-width" placeholder="Width (ft)" class="form-input"><input type="number" name="final-depth" placeholder="Depth (in)" class="form-input"></div>
+                                     </fieldset>
+                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                         <div><label for="artwork-weight" class="form-label">Weight (lbs)</label><input type="number" id="artwork-weight" name="artwork-weight" class="form-input"></div>
+                                         <div><label for="artwork-valuation" class="form-label">Insurance Valuation ($)</label><input type="text" id="artwork-valuation" name="artwork-valuation" class="form-input" required></div>
+                                         <div><label for="artwork-price" class="form-label">Sales Price ($)</label><input type="text" id="artwork-price" name="artwork-price" class="form-input"></div>
+                                     </div>
+                                     <fieldset>
+                                         <legend class="form-label">Agreement</legend>
+                                         <div class="agreement-box text-sm"><p><strong>HOLD HARMLESS AND PUBLICITY AGREEMENT:</strong> ...</p></div>
+                                         <div class="mt-4"><label class="flex items-center"><input type="checkbox" name="agreement" class="h-4 w-4 text-teal-600 border-gray-300 rounded" required><span class="ml-2 text-gray-700">I have read and agree to the terms.</span></label></div>
+                                     </fieldset>
+                                     <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-full hover:bg-teal-700 transition duration-300">Submit Application</button>
+                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Classes & Workshops -->
+                <div id="classes-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="collapsible-header flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Classes & Workshops</h3>
+                        <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="pt-8">
+                             <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">We offer a wide variety of engaging classes and workshops for all ages and skill levels, taught by experienced local artists. Whether you're a beginner looking to explore a new medium or an experienced artist wanting to refine your techniques, you'll find a class to spark your creativity. Check out the list below for our current offerings and register to join our vibrant learning community!</p>
+                             <div id="class-list" class="space-y-12">
+                                 <!-- Classes will be dynamically inserted here -->
+                             </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Meet Our Artists -->
+                <div id="artists-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <div class="collapsible-header flex justify-between items-center">
+                        <h3 class="text-2xl font-bold text-gray-800">Meet Our Artists</h3>
+                        <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="pt-8 text-center">
+                            <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">The Kokomo Art Association is a community enriched by the diverse talents of our member artists. From painters and sculptors to photographers and crafters, our artists represent a wide range of styles and mediums. We are proud to showcase their work and share their stories. Click on an artist's name below to learn more about them and view examples of their incredible art.</p>
+                            <div id="artist-list" class="flex flex-wrap justify-center gap-x-4 gap-y-3">
+                                <!-- Artist names will be dynamically inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer" class="bg-white text-gray-800 border-t">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-2"><h4 class="font-bold text-lg mb-4 text-gray-900">About KAA</h4><p class="text-gray-600">The Kokomo Art Association was organized in 1926. Bylaws and a constitution were established in 1962, and not-for-profit status was attained in 1981. We are dedicated to promoting the arts and supporting local artists in our community.</p></div>
+                <div><h4 class="font-bold text-lg mb-4 text-gray-900">Join Our Newsletter</h4><form onsubmit="return false;"><div class="flex"><input type="email" class="w-full rounded-l-md px-3 py-2 border border-gray-300 text-gray-800" placeholder="your.email@example.com"><button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded-r-md hover:bg-teal-700">→</button></div></form><div class="flex space-x-4 mt-4"><a href="https://www.facebook.com/KokomoArtAssociation/?fref=ts" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-facebook-square"></i></a><a href="https://www.instagram.com/kokomoartassociation/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-2xl text-gray-500 hover:text-teal-600"><i class="fab fa-instagram-square"></i></a></div></div>
+            </div>
+            <div class="border-t border-gray-200 mt-12 pt-8">
+                <h4 class="font-bold text-lg mb-6 text-center text-gray-700">Our Valued Sponsors</h4>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/dukeenergy.png" alt="Duke Energy Logo" class="h-14 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/Howard%20County%20logos_Page_01.png" alt="Howard County Logo" class="h-20 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/tri-countyScmyk_newblue_gwp_071620_stacked.png" alt="Tri-County Logo" class="h-20 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/IAC_Logo_Horizontal.png" alt="Indiana Arts Commission Logo" class="h-12 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/2018-Horizontal-Logo-with-url-thumb_0.png" alt="National Endowment for the Arts Logo" class="h-14 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/Logo_AM_Horizontal_Black.png" alt="Arts Midwest Logo" class="h-14 w-auto">
+                    <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/blick.png" alt="Blick Art Materials Logo" class="h-10 w-auto">
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-6 text-center text-gray-600"><p>© <span id="year"></span> Kokomo Art Association. All Rights Reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- Modal placeholder -->
+    <div id="modal-placeholder"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DATA ---\
+        const artistData = {
+            'Marilyn Aleman': { img: 'https://placehold.co/400x400/8d5b3c/f5efe6?text=Pottery', bio: 'I was born in Marion, Indiana and have been creating art since childhood. My passion lies in exploring the tactile nature of clay through pottery and expressing detail and form through drawing. I find inspiration in the natural world and everyday objects, aiming to capture their essence in my work.', type: 'Pottery & Drawing', kaaBioUrl: 'https://www.kaaonline.org/marilyn-aleman' },
+            'Steve Creighton': { img: 'https://placehold.co/400x400/0891b2/ecfeff?text=Oil+Painting', bio: 'Steve Creighton grew up near Warsaw, Indiana and has pursued his love for painting throughout his life. He specializes in oil painting, capturing landscapes and scenes with a keen eye for light and atmosphere. His work often reflects the beauty of the Midwest.', type: 'Oil Painting', kaaBioUrl: 'https://www.kaaonline.org/steve-creighton', externalLinks: [{ label: 'Website', url: 'http://www.stevecreightonart.com' }] },
+            'Lisa Ananich Freeland': { img: 'https://placehold.co/400x400/c026d3/faf5ff?text=Art+Dolls', bio: 'LISA ANANICH FREELAND creates one of a kind (OOAK) art dolls and intricate assemblage pieces. Her work is characterized by whimsical and often thought-provoking narratives, bringing together found objects and sculpted elements to tell unique stories.', type: 'OOAK Art Dolls & Assemblage', kaaBioUrl: 'https://www.kaaonline.org/lisa-ananich-freeland', externalLinks: [{ label: 'Website', url: 'http://www.mybaublesjar.com' }] },
+            'Lesley Wysong': { img: 'https://placehold.co/400x400/16a34a/f0fdf4?text=Collage', bio: 'Creative Art & Paper Collage. I love creating vibrant and textured pieces using acrylics, mixed media, and collage techniques. My work is an exploration of color, pattern, and layering, often incorporating unexpected elements.', type: 'Acrylics, Mixed Media & Collage', kaaBioUrl: 'https://www.kaaonline.org/lesley-wysong' },
+            'Mark Hobson': { img: 'https://placehold.co/400x400/b45309/fff7ed?text=Woodworking', bio: 'Mark lives on the Howard County land that has been in his family for generations. His woodworking reflects a deep connection to the natural world and traditional craftsmanship. He creates beautiful and functional pieces, often highlighting the unique qualities of the wood he uses.', type: 'Woodworking', kaaBioUrl: 'https://www.kaaonline.org/mark-hobson' },
+            'Peggy Hobson': { img: 'https://placehold.co/400x400/6d28d9/f5f3ff?text=Stained+Glass', bio: 'Peggy moved to Howard County in 1973 and has been working with stained glass for many years. Her intricate designs and vibrant colors bring light and beauty to any space. She enjoys creating custom pieces and sharing her passion for this timeless art form.', type: 'Stained Glass', kaaBioUrl: 'https://www.kaaonline.org/peggy-ragland-hobson' },
+            'Don Wilka': { img: 'https://placehold.co/400x400/374151/f3f4f6?text=Zentangle', bio: 'I have been an LCSW for over 40 years and found a powerful outlet for creativity and mindfulness in the art of Zentangle. I am a Certified Zentangle Teacher (CZT) and love sharing this meditative drawing method with others.', type: 'Zentangle®', kaaBioUrl: 'https://www.kaaonline.org/don-wilka', externalLinks: [{ label: 'Blog', url: 'http://tanglesandmore.blogspot.com' }] },
+            'Angela Walthour': { img: 'https://placehold.co/400x400/0284c7/f0f9ff?text=Colored+Pencil', bio: 'Color pencil artist, watercolorist and dabbler in various other mediums. I enjoy capturing the essence of subjects, particularly animals, with detail and vibrant color.', type: 'Colored Pencil & Watercolor', kaaBioUrl: 'https://www.kaaonline.org/about-1', externalLinks: [{ label: 'Facebook', url: 'https://www.facebook.com/petdrawingsbyangel' }] },
+            'Ramona Daniels': { img: 'https://placehold.co/400x400/be123c/fef1f2?text=Oil+Painting', bio: '“Oil painting is my love, for its possibilities are endless…” Ramona’s passion for oil painting is evident in her expressive and often vibrant works. She enjoys exploring various subjects and techniques within this versatile medium.', type: 'Oil Painting', kaaBioUrl: 'https://www.kaaonline.org/ramona-daniels' },
+            'Avon Waters': { img: 'https://placehold.co/400x400/3b82f6/eff6ff?text=Pastels', bio: 'I paint the air around a thing more than focusing on the thing itself... Avon’s pastel and oil landscapes capture the mood and atmosphere of a scene, focusing on light and color to evoke emotion.', type: 'Pastel & Oil Landscapes', kaaBioUrl: 'https://www.avonwaters.com/', externalLinks: [{ label: 'Website', url: 'https://www.avonwaters.com/' }] },
+            'Shelley Wilder': { bio: 'Shelley Wilder is a talented member of the KAA community.', type: 'Mixed Media' },
+            'Sara McCubbin': { bio: 'Sara McCubbin contributes her artistic vision to the association.', type: 'Painting' },
+            'Dixie Ben-net': { bio: 'Dixie Ben-net is known for her beautiful watercolor work and also teaches classes.', type: 'Watercolor' },
+            'Corinne McAuley': { bio: 'Corinne McAuley is an active artist within the KAA.', type: 'Various' },
+            'Michael Hickey': { bio: 'Michael Hickey is a skilled artist in the KAA.', type: 'Sculpture' },
+            'Cheryl Sullivan': { bio: 'Cheryl Sullivan shares her artistic talents with the association.', type: 'Drawing' },
+            'Marita Barber': { bio: 'Marita Barber is a creative force within the KAA.', type: 'Fiber Arts' },
+            'Tammy Roe': { bio: 'Tammy Roe contributes her unique artistic perspective.', type: 'Photography' },
+            'Patrick Redmon': { bio: 'Patrick Redmon is a valued artist member.', type: 'Painting' },
+            'Alovea Chadwell': { bio: 'Alovea Chadwell is a creative artist in the KAA.', type: 'Mixed Media' },
+            'Jan Stieglitz': { bio: 'Jan Stieglitz is an active participant in the arts community.', type: 'Painting' },
+            'Vivian Bennett': { bio: 'Vivian Bennett is an artist who specializes in Junk Journaling and teaches workshops.', type: 'Junk Journaling' },
+            'Kat Cloward': { bio: 'Kat Cloward is a member artist of the KAA.', type: 'Various' },
+            'Lana Kirtley': { bio: 'Lana Kirtley is a contributing artist.', type: 'Ceramics' },
+            'Bertie David': { bio: 'Bertie David is an artist involved with the KAA.', type: 'Painting' },
+            'Karen Gardner': { bio: 'Karen Gardner shares her artistic passion.', type: 'Drawing' },
+            'Ken Gardner': { bio: 'Ken Gardner is an artist member of the association.', type: 'Woodworking' }
+        };
+        const artworks = [
+            { img: 'https://placehold.co/600x400/3b82f6/ffffff?text=Artwork+1', title: 'Serenity in Blue', artist: 'Jane Doe', price: '$350' },
+            { img: 'https://placehold.co/600x400/16a34a/ffffff?text=Artwork+2', title: 'Forest Whispers', artist: 'John Smith', price: '$500' },
+            { img: 'https://placehold.co/600x400/ef4444/ffffff?text=Artwork+3', title: 'Autumn Blaze', artist: 'Emily White', price: '$425' }
+        ];
+
+        const classes = [
+            { title: 'Watercolor Techniques', instructor: 'Dixie Ben-net', description: 'Explore the transparent and luminous qualities of watercolor with experienced artist and instructor Dixie Ben-net. This class is designed for both beginners and those with some prior experience who wish to enhance their skills. Learn fundamental techniques and create beautiful washes and layers.', schedule: 'Tuesdays, 6:00 PM - 8:00 PM', price: '$120 for 4 weeks' },
+            { title: 'Pastels', instructor: 'Avon Waters', description: 'Learn to create vibrant and expressive pastel paintings under the guidance of acclaimed artist Avon Waters. We will cover essential techniques including composition, color theory, layering, and blending to bring your artwork to life.', schedule: 'Wednesdays, 1:00 PM - 3:00 PM', price: '$130 for 4 weeks' },
+            { title: 'Photography', instructor: 'Bob Dawson', description: 'This comprehensive class covers the fundamentals of digital photography, including understanding your camera settings, mastering lighting, and applying effective composition techniques to capture stunning images.', schedule: 'Thursdays, 6:00 PM - 8:00 PM', price: '$150 for 6 weeks' },
+            { title: 'Sip & Paint Parties', instructor: 'Ramona Daniels', description: 'Unleash your inner artist in a fun,
