@@ -47,8 +47,10 @@
             transition: transform 0.3s ease-in-out;
         }
         .collapsible-header.is-open .toggle-icon {
+ .collapsible-header.is-open .toggle-icon {
             transform: rotate(180deg);
         }
+ .fb-page, .fb-page span, .fb-page span iframe[style] { width: 100% !important; max-width: 100%; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -63,7 +65,7 @@
             <div class="flex items-center">
                 <a href="#" class="flex items-center">
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/918D5B2F-EEA0-4A9E-AC15-88359C704F97.png" alt="Kokomo Art Association Logo" class="h-12 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/150x50/000000/FFFFFF?text=KAA+Logo';">
-                    <span class="hidden md:inline ml-4 text-black text-lg font-semibold">Kokomo Art Association</span>
+ <span class="hidden md:inline ml-6 text-black text-lg font-semibold">Kokomo Art Association</span>
                 </a>
             </div>
             <div class="hidden md:flex items-center space-x-6">
@@ -102,28 +104,22 @@
                 <a href="#membership" class="mt-8 inline-block bg-teal-600 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-700 transition duration-300">Join Our Community</a>
             </div>
         </section>
+ <!-- Virtual Tour Section -->
+ <section id="virtual-tour" class="bg-white py-12 md:py-20 scroll-animate">
+ <div class="container mx-auto px-6 text-center">
+ <h2 class="text-3xl font-bold text-gray-800 mb-8">Take a Virtual Tour</h2>
+ <div class="relative w-full" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+ <iframe src="https://www.google.com/maps/embed?pb=!4v1716300638342!6m8!1m7!1sCjV4zFp33p9_j4z_050m_g!2m2!1d40.48837472618261!2d-86.13264606186036!3f0!4f0!5f0.7820865974627469" width="100%" height="100%" style="position: absolute; top: 0; left: 0; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ </div>
+ </div>
+ </section>
 
             <!-- Community Hub for Collapsible Sections -->
-            <section class="py-12 md:py-20 bg-white scroll-animate">
-                <div class="container mx-auto px-6 space-y-10">
+ <section class="py-12 md:py-20 bg-gray-50 scroll-animate">
+ <div class="container mx-auto px-6 space-y-10">
                     <h2 class="text-3xl font-bold text-center text-gray-800">Community Hub & Artist Opportunities</h2>
                     
                     <!-- Art for Sale -->
-                    <div id="store-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <div class="collapsible-header flex justify-between items-center">
-                            <h3 class="text-2xl font-bold text-gray-800">Art for Sale</h3>
-                            <i class="fas fa-chevron-down toggle-icon text-2xl text-gray-500"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="pt-8">
-                                <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">This is a gallery of what's available in our stores. All items are available for purchase in person.</p>
-                                <div id="art-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    <!-- Artworks will be dynamically inserted here -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Artist Alley -->
                     <div id="artist-alley-section" class="bg-gray-50 p-6 rounded-lg shadow-md">
                         <div class="collapsible-header flex justify-between items-center">
@@ -215,8 +211,28 @@
 
                 </div>
             </section>
-        </div>
-    <footer id="footer" class="bg-white text-gray-800 border-t">
+ <section class="py-12 md:py-20 bg-white scroll-animate">
+ <div class="container mx-auto px-6 text-center">
+ <h2 class="text-3xl font-bold text-gray-800 mb-8">Connect with Us on Facebook</h2>
+ <div class="flex justify-center">
+ <div class="fb-page" 
+ data-href="https://www.facebook.com/KokomoArtAssociation" 
+ data-tabs="timeline" 
+ data-width="500" 
+ data-height="800" 
+ data-small-header="false" 
+ data-adapt-container-width="true" 
+ data-hide-cover="false" 
+ data-show-facepile="true">
+ <blockquote cite="https://www.facebook.com/KokomoArtAssociation" class="fb-xfbml-parse-ignore">
+ <a href="https://www.facebook.com/KokomoArtAssociation">Kokomo Art Association</a>
+ </blockquote>
+ </div>
+ </div>
+ </div>
+ </section>
+    </main>
+ <footer id="footer" class="bg-white text-gray-800 border-t">
         <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="md:col-span-2"><h4 class="font-bold text-lg mb-4 text-gray-900">About KAA</h4><p class="text-gray-600">The Kokomo Art Association was organized in 1926. Bylaws and a constitution were established in 1962, and not-for-profit status was attained in 1981. We are dedicated to promoting the arts and supporting local artists in our community.</p></div>
@@ -224,7 +240,7 @@
             </div>
             <div class="border-t border-gray-200 mt-12 pt-8">
                 <h4 class="font-bold text-lg mb-6 text-center text-gray-700">Our Valued Sponsors</h4>
-                <div class="flex flex-wrap justify-center items-center gap-8">
+ <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/dukeenergy.png" alt="Duke Energy Logo" class="h-14 w-auto">
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/Howard%20County%20logos_Page_01.png" alt="Howard County Logo" class="h-20 w-auto">
                     <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/tri-countyScmyk_newblue_gwp_071620_stacked.png" alt="Tri-County Logo" class="h-20 w-auto">
@@ -264,12 +280,6 @@
         let currentDate = new Date();
         
         const artworks = [
-            { img: 'https://placehold.co/600x400/3b82f6/ffffff?text=Artwork+1', title: 'Serenity in Blue', artist: 'Jane Doe', price: '$350' },
-            { img: 'https://placehold.co/600x400/16a34a/ffffff?text=Artwork+2', title: 'Forest Whispers', artist: 'John Smith', price: '$500' },
-            { img: 'https://placehold.co/600x400/ef4444/ffffff?text=Artwork+3', title: 'Autumn Blaze', artist: 'Emily White', price: '$425' }
-        ];
-
-        const classes = [
             { title: 'Watercolor Techniques', instructor: 'Dixie Ben-net', description: 'Explore the transparent and luminous qualities of watercolor. This class is for beginners and those with some experience.', schedule: 'Tuesdays, 6:00 PM - 8:00 PM', price: '$120 for 4 weeks' },
             { title: 'Pastels', instructor: 'Avon Waters', description: 'Learn to create vibrant and expressive pastel paintings. We will cover composition, color theory, and layering techniques.', schedule: 'Wednesdays, 1:00 PM - 3:00 PM', price: '$130 for 4 weeks' },
             { title: 'Photography', instructor: 'Bob Dawson', description: 'This class covers the fundamentals of digital photography, including camera settings, lighting, and composition.', schedule: 'Thursdays, 6:00 PM - 8:00 PM', price: '$150 for 6 weeks' },
@@ -287,29 +297,8 @@
         const nextMonthBtn = document.getElementById('next-month-btn');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        const artGallery = document.getElementById('art-gallery');
         const classList = document.getElementById('class-list');
 
-        // --- MODAL LOGIC ---
-        const createModal = (content) => {
-            modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">×</button>${content}</div></div></div>`;
-            setTimeout(() => {
-                const overlay = document.getElementById('modal-overlay');
-                if (overlay) overlay.classList.add('visible');
-            }, 10);
-            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-            document.getElementById('modal-overlay').addEventListener('click', (e) => {
-                if (e.target.id === 'modal-overlay') closeModal();
-            });
-        };
-
-        const closeModal = () => {
-            const overlay = document.getElementById('modal-overlay');
-            if (overlay) {
-                overlay.classList.remove('visible');
-                setTimeout(() => { modalPlaceholder.innerHTML = ''; }, 300);
-            }
-        };
         
         const showMessageModal = (title, message) => {
             const content = `
@@ -355,21 +344,6 @@
         };
 
         // --- DYNAMIC CONTENT RENDERING ---
-        if (artGallery) {
-            artworks.forEach(artwork => {
-                const artElement = document.createElement('div');
-                artElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
-                artElement.innerHTML = `
-                    <img src="${artwork.img}" alt="${artwork.title}" class="w-full h-64 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold">${artwork.title}</h3>
-                        <p class="text-gray-700">by ${artwork.artist}</p>
-                        <p class="text-lg font-semibold mt-4">${artwork.price}</p>
-                    </div>
-                `;
-                artGallery.appendChild(artElement);
-            });
-        }
 
         if (classList) {
             classes.forEach(cls => {
