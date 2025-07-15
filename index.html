@@ -67,8 +67,22 @@
     </header>
 
     <main>
-        <section>
-            <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/kaacolor.png" alt="Colorful watercolor background" class="w-full h-auto">
+        <section id="hero-carousel" class="relative">
+            <div class="overflow-hidden relative">
+                <div id="carousel-slides" class="flex transition-transform duration-700">
+                    <div class="min-w-full flex justify-center bg-white">
+                        <img src="https://raw.githubusercontent.com/Kmberry1989/kaaonline/main/kaacolor.png" alt="Colorful watercolor background" class="w-1/2 h-auto">
+                    </div>
+                    <div class="min-w-full flex items-center justify-center bg-gray-100">
+                        <h2 class="text-3xl md:text-5xl font-bold">Upcoming Events All Year</h2>
+                    </div>
+                    <div class="min-w-full flex items-center justify-center bg-teal-600 text-white">
+                        <h2 class="text-3xl md:text-5xl font-bold">Join Our Artist Community</h2>
+                    </div>
+                </div>
+            </div>
+            <button id="carousel-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full">&#8249;</button>
+            <button id="carousel-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full">&#8250;</button>
         </section>
         <section class="bg-white py-16">
             <div class="container mx-auto px-6 text-center">
@@ -273,6 +287,25 @@
             '2025-3-15': [ { title: 'Junk Journal Workshop', time: '12:00 PM - 4:00 PM', description: 'Create a handmade journal from recycled and repurposed materials with talented artist Vivian Bennett.', cost: '$62.50 (all materials included)' } ],
             '2025-7-13': [ { title: 'Reception for Brandon C. Bass', time: '12:00 PM - 3:00 PM', description: 'Join us for a reception celebrating our July guest artist, Brandon C. Bass. Light refreshments will be served.', cost: 'Free to attend' } ]
         };
+        const generateCalendarLinks = (key, ev) => {
+            const [y,m,d] = key.split('-').map(Number);
+            const [startStr,endStr] = ev.time.split(' - ');
+            const parse = (s) => {
+                const [t,amp] = s.split(' ');
+                let [hh,mm] = t.split(':').map(Number);
+                if(amp==='PM' && hh<12) hh+=12;
+                if(amp==='AM' && hh===12) hh=0;
+                return {hh,mm};
+            };
+            const st = new Date(y, m-1, d, ...Object.values(parse(startStr)));
+            const en = new Date(y, m-1, d, ...Object.values(parse(endStr)));
+            const pad = x=>String(x).padStart(2,'0');
+            const fmt = (dt)=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+            const gLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.title)}&dates=${fmt(st)}/${fmt(en)}&details=${encodeURIComponent(ev.description)}`;
+            const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${ev.title}\nDESCRIPTION:${ev.description}\nDTSTART:${fmt(st)}\nDTEND:${fmt(en)}\nEND:VEVENT\nEND:VCALENDAR`;
+            const icsLink = `data:text/calendar;charset=utf8,${encodeURIComponent(ics)}`;
+            return `<div class="mt-4 space-y-2"><a href="${gLink}" target="_blank" class="text-teal-600 hover:text-teal-800 font-semibold">Add to Google Calendar</a><br><a href="${icsLink}" download="event.ics" class="text-teal-600 hover:text-teal-800 font-semibold">Add to Outlook/Apple Calendar</a></div>`;
+        };
         let currentDate = new Date(2025, 6, 1);
         
         const modalPlaceholder = document.getElementById('modal-placeholder');
@@ -283,6 +316,17 @@
         const nextMonthBtn = document.getElementById('next-month-btn');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const slidesContainer = document.getElementById('carousel-slides');
+        let currentSlide = 0;
+        const showSlide = (i) => {
+            if(!slidesContainer) return;
+            const total = slidesContainer.children.length;
+            currentSlide = (i + total) % total;
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        };
+        document.getElementById('carousel-prev')?.addEventListener('click', () => showSlide(currentSlide - 1));
+        document.getElementById('carousel-next')?.addEventListener('click', () => showSlide(currentSlide + 1));
+        setInterval(() => showSlide(currentSlide + 1), 5000);
 
         const createModal = (content) => {
             modalPlaceholder.innerHTML = `<div id="modal-overlay" class="modal-overlay"><div class="modal-container"><div class="p-8 relative"><button id="modal-close-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl z-10">&times;</button>${content}</div></div></div>`;
@@ -350,7 +394,8 @@
                     dayEl.appendChild(dot);
                     dayEl.addEventListener('click', () => {
                         const event = events[eventKey][0];
-                        const content = `<h2 class="text-2xl font-bold mb-2">${event.title}</h2><p class="text-gray-500 font-semibold mb-4">${event.time}</p><p class="text-gray-700 mb-4">${event.description}</p><p class="font-bold mb-6">${event.cost}</p><button class="event-form-trigger-modal w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700">Register Now</button>`;
+                        const links = generateCalendarLinks(eventKey, event);
+                        const content = `<h2 class="text-2xl font-bold mb-2">${event.title}</h2><p class="text-gray-500 font-semibold mb-4">${event.time}</p><p class="text-gray-700 mb-4">${event.description}</p><p class="font-bold mb-6">${event.cost}</p>${links}<button class="event-form-trigger-modal w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 mt-4">Register Now</button>`;
                         createModal(content);
                     });
                 }
@@ -453,5 +498,6 @@
         renderCalendar();
     });
     </script>
+    <script src="membership.js"></script>
 </body>
 </html>

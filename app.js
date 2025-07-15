@@ -10,4 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadComponent('header.html', 'header-placeholder');
     loadComponent('footer.html', 'footer-placeholder');
+    const memberScript = document.createElement('script');
+    memberScript.src = 'membership.js';
+    document.body.appendChild(memberScript);
 });
