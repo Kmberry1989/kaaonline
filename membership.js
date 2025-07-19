@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.createElement('div');
   overlay.id = 'membership-overlay';
-  overlay.className = 'fixed bottom-0 left-0 right-0 bg-teal-700 text-white text-sm px-4 py-2 flex flex-wrap items-center justify-between space-y-2 md:space-y-0 z-50';
+  overlay.className = 'w-full bg-teal-700 text-white text-sm px-4 py-2 flex flex-wrap items-center justify-between space-y-2 md:space-y-0';
   overlay.innerHTML = `
     <span id="member-info" class="mr-4">Not logged in</span>
     <nav class="flex items-center gap-4">
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   const header = document.querySelector('header');
   if (header) {
-    header.insertAdjacentElement('afterend', overlay);
+    header.insertAdjacentElement('beforeend', overlay);
   } else {
     document.body.prepend(overlay);
   }
